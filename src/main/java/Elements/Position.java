@@ -1,7 +1,7 @@
-package Collectables;
+package Elements;
 
 /**
- * Created by armor on 25.12.2015.
+ * Created by Peter on 25.12.2015.
  */
 public class Position {
 

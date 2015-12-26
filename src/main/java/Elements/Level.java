@@ -1,21 +1,22 @@
-package Collectables;
+package Elements;
 
 /**
- * Created by armor on 25.12.2015.
+ * Created by Peter on 25.12.2015.
  */
-public class Collectables {
+public class Level {
 
     private static int score = 0, highscore = 0;
+    private ElementHandler fruitHandler, pillHandler, cornHandler;
+    private Lifes lifes;
 
-    CollectablesHandler fruitHandler, pillHandler, cornHandler;
-
-    public Collectables () {
+    public Level () {
         fruitHandler = new FruitHandler();
         pillHandler = new PillHandler();
         cornHandler = new CornHandler();
+        lifes = new Lifes (3);
     }
 
-    public void createCtype (CollectableType cType1, CollectableType cType2, Position pos) {
+    public void createCtype (ElementType cType1, ElementType cType2, Position pos) {
         switch (cType2) {
             case FRUIT:
                 fruitHandler.create (cType1, randomPosition());
@@ -24,13 +25,13 @@ public class Collectables {
                 pillHandler.create (cType1, pos);
                 break;
             case CORN:
-                cornHandler.create(cType1, pos);
+                cornHandler.create(cType2, pos);
                 break;
             default:
         }
     }
 
-    private Position randomPosition () {
+    protected static Position randomPosition () {
         // implement random positioning
         return new Position (1, 1);
     }
@@ -39,12 +40,12 @@ public class Collectables {
         score += points;
     }
 
-    public void resetGame () {
+    protected void resetGame () {
         highscore = score;
         score = 0;
         fruitHandler = new FruitHandler();
         pillHandler = new PillHandler();
         cornHandler = new CornHandler();
+        lifes = new Lifes (3);
     }
-
 }

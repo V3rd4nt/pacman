@@ -1,19 +1,20 @@
-package Collectables;
+package Elements;
 
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by armor on 25.12.2015.
+ * Created by Peter on 25.12.2015.
  */
-public class CornHandler implements CollectablesHandler {
+public class CornHandler implements ElementHandler {
     List<Corn> corns;
 
     public CornHandler() {
-        corns = new ArrayList<Corn>();
+        corns = new ArrayList<>();
     }
 
-    public boolean create (CollectableType cType, Position pos) {
+    @Override
+    public boolean create (ElementType cType, Position pos) {
 
         // impement check if position is already used by another corn
         Corn corn = new Corn(pos);
@@ -21,6 +22,7 @@ public class CornHandler implements CollectablesHandler {
         return true;
     }
 
+    @Override
     public boolean eat (Position pos) {
         for (Corn corn : corns) {
             if (corn.getPosition().getX() == pos.getX() && corn.getPosition().getY() == pos.getY()) {
@@ -32,7 +34,12 @@ public class CornHandler implements CollectablesHandler {
         return false;
     }
 
+    @Override
+    public int getNumberOfElements() {
+        return corns.size();
+    }
+
     private void getPoints (Corn corn) {
-        Collectables.addScore(corn.getValue());
+        Level.addScore(corn.getValue());
     }
 }

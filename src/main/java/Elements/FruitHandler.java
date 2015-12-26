@@ -1,19 +1,20 @@
-package Collectables;
+package Elements;
 
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by armor on 25.12.2015.
+ * Created by Peter on 25.12.2015.
  */
-public class FruitHandler implements CollectablesHandler {
-    List<Fruit> fruits;
+public class FruitHandler implements ElementHandler {
+    private List<Fruit> fruits;
 
     public FruitHandler () {
-        fruits = new ArrayList<Fruit>();
+        fruits = new ArrayList<>();
     }
 
-    public boolean create (CollectableType cType, Position pos) {
+    @Override
+    public boolean create (ElementType cType, Position pos) {
         Fruit fruit;
         switch(cType) {
             case CHERRY:
@@ -38,6 +39,7 @@ public class FruitHandler implements CollectablesHandler {
         return true;
     }
 
+    @Override
     public boolean eat (Position pos) {
         int points = 0;
         for (Fruit fruit : fruits) {
@@ -50,6 +52,11 @@ public class FruitHandler implements CollectablesHandler {
         return false;
     }
 
+    @Override
+    public int getNumberOfElements() {
+        return fruits.size();
+    }
+
     private boolean destroy (Fruit fruit, int displayTime) {
         // countdown display time and delete fruit aftewards
 
@@ -60,6 +67,6 @@ public class FruitHandler implements CollectablesHandler {
     }
 
     private void getPoints (Fruit fruit) {
-        Collectables.addScore(fruit.getFruitType().getValue());
+        Level.addScore(fruit.getFruitType().getValue());
     }
 }

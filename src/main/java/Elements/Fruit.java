@@ -1,7 +1,7 @@
-package Collectables;
+package Elements;
 
 /**
- * Created by armor on 25.12.2015.
+ * Created by Peter on 25.12.2015.
  */
 public class Fruit {
 
@@ -13,7 +13,7 @@ public class Fruit {
         BANANA(3200, 3);
         private int val, displayTime;
 
-        private FruitType(int val, int displayTime) {
+        FruitType(int val, int displayTime) {
             this.val = val;
             this.displayTime = displayTime;
         }
