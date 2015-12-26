@@ -3,9 +3,6 @@ package Elements;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by Peter on 25.12.2015.
- */
 public class PillHandler implements ElementHandler {
     private List<Pill> pills;
     private static int numberOfGhotstLeft = 0;

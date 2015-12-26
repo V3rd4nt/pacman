@@ -1,8 +1,5 @@
 package Elements;
 
-/**
- * Created by Peter on 25.12.2015.
- */
 public class Ghost {
 
     private Position pos;

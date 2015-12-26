@@ -1,8 +1,5 @@
 package Elements;
 
-/**
- * Created by Peter on 25.12.2015.
- */
 public class Level {
 
     private static int score = 0, highscore = 0;

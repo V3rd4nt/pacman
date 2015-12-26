@@ -3,9 +3,6 @@ package Elements;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by Peter on 25.12.2015.
- */
 public class GhostHandler implements ElementHandler {
     private List<Ghost> ghosts;
 
