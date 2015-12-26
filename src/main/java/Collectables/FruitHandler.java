@@ -1,8 +1,4 @@
-package Collectables.Fruit;
-
-import Collectables.Position;
-import Collectables.CollectableType;
-import Collectables.CollectablesHandler;
+package Collectables;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,7 +13,7 @@ public class FruitHandler implements CollectablesHandler {
         fruits = new ArrayList<Fruit>();
     }
 
-    public int createCtype(CollectableType cType, Position pos) {
+    public boolean create (CollectableType cType, Position pos) {
         Fruit fruit;
         switch(cType) {
             case CHERRY:
@@ -35,33 +31,35 @@ public class FruitHandler implements CollectablesHandler {
             case BANANA:
                 fruit = new Fruit(Fruit.FruitType.BANANA, pos);
                 break;
-            default: return 0;
+            default: return false;
         }
         fruits.add(fruit);
-        return fruit.getFruitType().getDisplayTime();
+        destroy(fruit, fruit.getFruitType().getDisplayTime());
+        return true;
     }
 
-    public boolean delete (Position pos) {
+    public boolean eat (Position pos) {
+        int points = 0;
         for (Fruit fruit : fruits) {
             if (fruit.getPosition().getX() == pos.getX() && fruit.getPosition().getY() == pos.getY()) {
+                getPoints(fruit);
                 fruits.remove(fruit);
                 return true;
             }
         }
         return false;
     }
-    public int getPoints (Position pos) {
-        int points = 0;
-        for (Fruit fruit : fruits) {
-            if (fruit.getPosition().getX() == pos.getX() && fruit.getPosition().getY() == pos.getY()) {
-                points = fruit.getFruitType().getValue();
-                fruits.remove(fruit);
-            }
-        }
-        return points;
+
+    private boolean destroy (Fruit fruit, int displayTime) {
+        // countdown display time and delete fruit aftewards
+
+        if (fruits.contains(fruit)) {
+            fruits.remove(fruit);
+            return true;
+        } else return false;
     }
 
-    public int getMaxOcurrence (Position pos) {
-        return 0;
+    private void getPoints (Fruit fruit) {
+        Collectables.addScore(fruit.getFruitType().getValue());
     }
 }

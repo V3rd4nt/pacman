@@ -1,6 +1,4 @@
-package Collectables.Pill;
-
-import Collectables.Position;
+package Collectables;
 
 /**
  * Created by armor on 25.12.2015.
@@ -8,13 +6,8 @@ import Collectables.Position;
 public class Pill {
 
     public enum PillType {
-        POWER(10, 2),
-        BLACK(15, 1),
-        GHOST(30, 1),
-        LIFE(0, 1),
-        DOUBLE(10, 2),
-        GOD(15, 2),
-        TUNNEL(5, 1);
+        POWER(10, 2);
+
         private int effectTime, maxOcurrence;
 
         private PillType(int effectTime, int maxOcurrence) {
@@ -28,6 +21,10 @@ public class Pill {
 
         public int getMaxOcurrence() {
             return maxOcurrence;
+        }
+
+        public void setMaxOcurrence (int maxOcurrence) {
+            this.maxOcurrence = maxOcurrence;
         }
     }
 
@@ -45,7 +42,16 @@ public class Pill {
         return pos;
     }
 
-    public PillType getPillType() {
-        return pillType;
+    public PillType getPillType() { return pillType; }
+
+    public void pillEffect (PillType pillType, int effectTime) {
+
+        // implement power pill effect
+        switch(pillType) {
+            case POWER: {
+
+            }
+            default:
+        }
     }
 }

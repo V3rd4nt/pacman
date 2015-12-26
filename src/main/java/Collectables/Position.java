@@ -6,7 +6,7 @@ package Collectables;
 public class Position {
 
     private int x, y;
-    private final int WIDTH = 1024, HEIGHT = 768;
+    private final int WIDTH = 30, HEIGHT = 20;
 
     public Position (int x, int y) {
         if (x <= 0) this.x = 0;

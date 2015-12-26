@@ -1,6 +1,4 @@
-package Collectables.Fruit;
-
-import Collectables.Position;
+package Collectables;
 
 /**
  * Created by armor on 25.12.2015.
@@ -42,7 +40,5 @@ public class Fruit {
         return pos;
     }
 
-    public FruitType getFruitType () {
-        return fruitType;
-    }
+    public FruitType getFruitType () { return  fruitType; }
 }
