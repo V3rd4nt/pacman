@@ -31,9 +31,9 @@ public class Ghost extends Element {
         this.ghostType = ghostType;
     }
 
-    protected Type getType () { return  ghostType; }
+    public Type getType () { return  ghostType; }
 
     public String toString () {
-        return ghostType.toString();
+        return ghostType.toString() + " GHOST";
     }
 }

@@ -7,9 +7,11 @@ import java.util.List;
 
 public class GhostHandler extends ElementHandler {
     private List<Ghost> ghosts;
+    private boolean vulnerable;
 
     public GhostHandler() {
         ghosts = new ArrayList<>();
+        vulnerable = false;
     }
 
     @Override
@@ -39,8 +41,12 @@ public class GhostHandler extends ElementHandler {
 
     @Override
     public boolean eat (Position pos) {
+        if (vulnerable) {
+            System.out.println("Ghosts are vulnerable");
         for (Ghost ghost : ghosts) {
             if (ghost.getPosition().getX() == pos.getX() && ghost.getPosition().getY() == pos.getY()) {
+
+                getPoints(ghost);
                 ghosts.remove(ghost);
 
                 Messages.pacmanEat(ghost);
@@ -48,7 +54,11 @@ public class GhostHandler extends ElementHandler {
                 return true;
             }
         }
-        return false;
+        return false; }
+        else {
+            System.out.println("Ghosts are not vulnerable");
+            return false;
+        }
     }
 
     @Override
@@ -59,5 +69,13 @@ public class GhostHandler extends ElementHandler {
     @Override
     public List<?> getElements() {
         return ghosts;
+    }
+
+    public void setVulnerable (boolean value) {
+        vulnerable = value;
+    }
+
+    private void getPoints (Ghost ghost) {
+        Level.addScore(ghost.getType().getValue());
     }
 }

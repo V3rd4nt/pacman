@@ -11,7 +11,7 @@ public class Messages {
         System.out.println(e.toString() +  " appeared on the playing field");
     }
 
-    public static void disappear (Element e) { System.out.println(e.toString() +  " disappeared "); }
+    public static void remove (Element e) { System.out.println(e.toString() +  " removed"); }
 
     public static void ghostEat (Element e) { System.out.println(e.toString() +  " ate Pacman"); }
 

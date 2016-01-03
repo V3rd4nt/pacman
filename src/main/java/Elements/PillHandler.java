@@ -1,15 +1,23 @@
 package Elements;
 
 import Util.Messages;
+import Util.EventTimer;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class PillHandler extends ElementHandler {
     private List<Pill> pills;
+    private Thread timer;
+    private ElementHandler eh;
 
     public PillHandler () {
         pills = new ArrayList<>();
+    }
+
+    public PillHandler (ElementHandler eh) {
+        pills = new ArrayList<>();
+        this.eh = eh;
     }
 
     @Override
@@ -39,7 +47,8 @@ public class PillHandler extends ElementHandler {
         for (Pill pill : pills) {
             if (pill.getPosition().getX() == pos.getX() && pill.getPosition().getY() == pos.getY()) {
                 int effectTime = pill.getType().getEffectTime();
-                startPillEffect(pill, effectTime);
+                timer = new EventTimer(effectTime, this, eh, pill);
+                timer.start();
                 pills.remove(pill);
                 return true;
             }
@@ -55,9 +64,5 @@ public class PillHandler extends ElementHandler {
     @Override
     public List<?> getElements() {
         return pills;
-    }
-
-    private void startPillEffect (Pill pill, int effectTime) {
-        pill.pillEffect (pill.getType(), effectTime);
     }
 }

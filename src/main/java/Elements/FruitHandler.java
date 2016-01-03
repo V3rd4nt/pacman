@@ -1,7 +1,7 @@
 package Elements;
 
 import Util.Messages;
-import Util.Timer;
+import Util.EventTimer;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -39,7 +39,7 @@ public class FruitHandler extends ElementHandler {
 
         Messages.appear(fruit);
 
-        timer = new Timer (fruit.getType().getDisplayTime(), this, fruit);
+        timer = new EventTimer(fruit.getType().getDisplayTime(), this, null, fruit);
         timer.start();
         return true;
     }
@@ -66,13 +66,6 @@ public class FruitHandler extends ElementHandler {
     public List<?> getElements() {
         return fruits;
     }
-
-/*    private boolean destroy (Fruit fruit) {
-        if (fruits.contains(fruit)) {
-            fruits.remove(fruit);
-            return true;
-        } else return false;
-    }*/
 
     private void getPoints (Fruit fruit) {
         Level.addScore(fruit.getType().getValue());
