@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>Elements</OriginalElement>
+  <nodes>
+    <node x="871.4583333333334" y="0.0">Elements.Position</node>
+    <node x="233.20253968253962" y="235.0">Elements.Pill</node>
+    <node x="788.5358730158729" y="546.0">Elements.GhostHandler</node>
+    <node x="0.0" y="279.0">Elements.Corn</node>
+    <node x="1135.1749999999997" y="279.0">Elements.Fruit</node>
+    <node x="568.2025396825396" y="302.0">Elements.ElementHandler</node>
+    <node x="1034.6749999999997" y="769.0">Elements.Level</node>
+    <node x="17.0" y="535.0">Elements.CornHandler</node>
+    <node x="1067.5358730158728" y="524.0">Elements.FruitHandler</node>
+    <node x="1408.1749999999997" y="557.0">Elements.Lifes</node>
+    <node x="876.2025396825396" y="301.0">Elements.Ghost</node>
+    <node x="313.125" y="524.0">Elements.PillHandler</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="Elements.Ghost" target="Elements.Position">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="Elements.Level" target="Elements.PillHandler">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="Elements.Level" target="Elements.FruitHandler">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="Elements.CornHandler" target="Elements.Corn">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="Elements.GhostHandler" target="Elements.ElementHandler">
+      <point x="-86.33333333333326" y="-70.5" />
+      <point x="831.7025396825396" y="504.0" />
+      <point x="769.8025396825396" y="504.0" />
+      <point x="57.60000000000002" y="47.5" />
+    </edge>
+    <edge source="Elements.Corn" target="Elements.Position">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="Elements.FruitHandler" target="Elements.ElementHandler">
+      <point x="-94.0" y="-92.5" />
+      <point x="1114.5358730158728" y="494.0" />
+      <point x="827.4025396825397" y="494.0" />
+      <point x="115.20000000000005" y="47.5" />
+    </edge>
+    <edge source="Elements.FruitHandler" target="Elements.Fruit">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="Elements.Level" target="Elements.Position">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="Elements.Pill" target="Elements.Position">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="Elements.CornHandler" target="Elements.ElementHandler">
+      <point x="88.0" y="-81.5" />
+      <point x="237.0" y="494.0" />
+      <point x="597.0025396825396" y="494.0" />
+      <point x="-115.20000000000005" y="47.5" />
+    </edge>
+    <edge source="Elements.Level" target="Elements.Lifes">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="Elements.Fruit" target="Elements.Position">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="Elements.GhostHandler" target="Elements.Ghost">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="Elements.Level" target="Elements.ElementHandler">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="Elements.PillHandler" target="Elements.ElementHandler">
+      <point x="88.33333333333326" y="-92.5" />
+      <point x="533.9583333333333" y="504.0" />
+      <point x="654.6025396825396" y="504.0" />
+      <point x="-57.60000000000002" y="47.5" />
+    </edge>
+    <edge source="Elements.Level" target="Elements.CornHandler">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="Elements.PillHandler" target="Elements.Pill">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="1.0" x="565.5" y="532.0" />
+  <SelectedNodes />
+  <Categories>
+    <Category>Fields</Category>
+    <Category>Constructors</Category>
+    <Category>Methods</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+
