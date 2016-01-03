@@ -1,18 +1,19 @@
 package Elements;
 
-public class Corn {
+public class Corn extends Element {
 
-    private Position pos;
     private int val;
 
     public Corn (Position pos) {
-        this.pos = pos;
+        super (pos);
         this.val = 10;
     }
 
-    public Position getPosition () {
-        return pos;
+    public int getValue () {
+        return val;
     }
 
-    public int getValue () { return val; }
+    public String toString () {
+        return "CORN";
+    }
 }

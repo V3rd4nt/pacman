@@ -1,8 +1,11 @@
 package Elements;
 
-public interface ElementHandler {
+import java.util.List;
 
-    boolean create (String type, Position pos);
-    boolean eat (Position pos);
-    int getNumberOfElements ();
+public abstract class ElementHandler {
+
+    public abstract boolean create (String type, Position pos);
+    public abstract boolean eat (Position pos);
+    public abstract int getNumberOfElements ();
+    public abstract List<?> getElements ();
 }

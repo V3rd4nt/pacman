@@ -1,13 +1,13 @@
 package Elements;
 
-public class Pill {
+public class Pill extends Element {
 
-    public enum PillType {
+    public enum Type {
         POWER(10, 2);
 
         private int effectTime, maxOcurrence;
 
-        PillType(int effectTime, int maxOcurrence) {
+        Type(int effectTime, int maxOcurrence) {
             this.effectTime = effectTime;
             this.maxOcurrence = maxOcurrence;
         }
@@ -26,29 +26,27 @@ public class Pill {
     }
 
 
-    private PillType pillType;
-    private Position pos;
-    private int numberOfGhostsLeft = 4;
+    private Type pillType;
 
-    public Pill(PillType pillType, Position pos) {
+    public Pill (Type pillType, Position pos) {
 
+        super (pos);
         this.pillType = pillType;
-        this.pos = pos;
     }
 
     public Position getPosition() {
         return pos;
     }
 
-    public void setNumberOfGhostsLeft (int numberOfGhostsLeft) {
-        this.numberOfGhostsLeft = numberOfGhostsLeft;
-    }
-
-    public PillType getPillType() {
+    protected Type getType() {
         return pillType;
     }
 
-    protected void pillEffect(PillType pillType, int effectTime) {
+    public String toString () {
+        return pillType.toString() + " PILL";
+    }
+
+    protected void pillEffect(Type pillType, int effectTime) {
 
         // implement power pill effect
         switch (pillType) {
@@ -57,7 +55,7 @@ public class Pill {
 
                 // active pill timer
 
-                getPoints(numberOfGhostsLeft);
+                // getPoints(numberOfGhostsLeft);
             }
             default:
         }

@@ -8,9 +8,9 @@ public class Main {
 
         // Beispiele
         level.createElement ("CORN", new Position(1,1));
+        level.createElement("FRUIT", "BANANA", new Position(1,1));
+        level.eat(new Position(1,1));
 
-        level.createElement("FRUIT", "BANANA", level.randomPosition());
-
-        level.createElement("PILL", "POWER", new Position(1,1));
+        //level.createElement("PILL", "POWER", new Position(2,2));
     }
 }
