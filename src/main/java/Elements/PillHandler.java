@@ -1,7 +1,7 @@
 package Elements;
 
 import Util.Messages;
-import Util.EventTimer;
+import Util.EventTimer1;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -47,7 +47,7 @@ public class PillHandler extends ElementHandler {
         for (Pill pill : pills) {
             if (pill.getPosition().getX() == pos.getX() && pill.getPosition().getY() == pos.getY()) {
                 int effectTime = pill.getType().getEffectTime();
-                timer = new EventTimer(effectTime, this, eh, pill);
+                timer = new EventTimer1(effectTime, this, eh, pill);
                 timer.start();
                 pills.remove(pill);
                 return true;
