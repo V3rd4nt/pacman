@@ -11,7 +11,7 @@ public class CornHandler implements ElementHandler {
     }
 
     @Override
-    public boolean create (ElementType cType, Position pos) {
+    public boolean create (String elementType, Position pos) {
 
         // impement check if position is already used by another corn
         Corn corn = new Corn(pos);

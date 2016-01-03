@@ -11,22 +11,22 @@ public class FruitHandler implements ElementHandler {
     }
 
     @Override
-    public boolean create (ElementType cType, Position pos) {
+    public boolean create (String elementType, Position pos) {
         Fruit fruit;
-        switch(cType) {
-            case CHERRY:
+        switch(elementType) {
+            case "CHERRY":
                 fruit = new Fruit(Fruit.FruitType.CHERRY, pos);
                 break;
-            case APPLE:
+            case "APPLE":
                 fruit = new Fruit(Fruit.FruitType.APPLE, pos);
                 break;
-            case STRAWBERRY:
+            case "STRAWBERRY":
                 fruit = new Fruit(Fruit.FruitType.STRAWBERRY, pos);
                 break;
-            case PEACH:
+            case "PEACH":
                 fruit = new Fruit(Fruit.FruitType.PEACH, pos);
                 break;
-            case BANANA:
+            case "BANANA":
                 fruit = new Fruit(Fruit.FruitType.BANANA, pos);
                 break;
             default: return false;

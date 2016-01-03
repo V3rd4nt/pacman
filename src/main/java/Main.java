@@ -1,4 +1,3 @@
-import Elements.ElementType;
 import Elements.*;
 
 public class Main {
@@ -7,6 +6,11 @@ public class Main {
         // level size see Position class
         Level level = new Level ();
 
-       // level.createCtype();
+        // Beispiele
+        level.createElement ("CORN", new Position(1,1));
+
+        level.createElement("FRUIT", "BANANA", level.randomPosition());
+
+        level.createElement("PILL", "POWER", new Position(1,1));
     }
 }

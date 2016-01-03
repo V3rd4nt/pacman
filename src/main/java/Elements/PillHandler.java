@@ -12,11 +12,11 @@ public class PillHandler implements ElementHandler {
     }
 
     @Override
-    public boolean create (ElementType cType, Position pos) {
+    public boolean create (String elementType, Position pos) {
         Pill pill;
 
-        switch(cType) {
-            case POWER:
+        switch(elementType) {
+            case "POWER":
                 pill = new Pill(Pill.PillType.POWER, pos);
                 break;
             default: return false;

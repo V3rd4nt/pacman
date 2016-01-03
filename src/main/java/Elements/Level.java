@@ -13,29 +13,29 @@ public class Level {
         lifes = new Lifes (3);
     }
 
-    public void createCtype (ElementType cType1, ElementType cType2, Position pos) {
+    public void createElement (String elementType1, String elementType2, Position pos) {
         if (pos == null) pos = randomPosition();
-        switch (cType1) {
-            case FRUIT:
-                fruitHandler.create (cType2, pos);
+        switch (elementType1) {
+            case "FRUIT":
+                fruitHandler.create (elementType2, pos);
                 break;
-            case PILL:
-                pillHandler.create (cType2, pos);
-                break;
-            default:
-        }
-    }
-
-    public void createCtype (ElementType cType1, Position pos) {
-        switch (cType1) {
-            case CORN:
-                cornHandler.create(cType1, pos);
+            case "PILL":
+                pillHandler.create (elementType2, pos);
                 break;
             default:
         }
     }
 
-    protected static Position randomPosition () {
+    public void createElement (String elementType1, Position pos) {
+        switch (elementType1) {
+            case "CORN":
+                cornHandler.create(elementType1, pos);
+                break;
+            default:
+        }
+    }
+
+    public Position randomPosition () {
         // implement random positioning
         return new Position (1, 1);
     }
