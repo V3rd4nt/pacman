@@ -14,15 +14,22 @@ public class Level {
     }
 
     public void createCtype (ElementType cType1, ElementType cType2, Position pos) {
-        switch (cType2) {
+        if (pos == null) pos = randomPosition();
+        switch (cType1) {
             case FRUIT:
-                fruitHandler.create (cType1, randomPosition());
+                fruitHandler.create (cType2, pos);
                 break;
             case PILL:
-                pillHandler.create (cType1, pos);
+                pillHandler.create (cType2, pos);
                 break;
+            default:
+        }
+    }
+
+    public void createCtype (ElementType cType1, Position pos) {
+        switch (cType1) {
             case CORN:
-                cornHandler.create(cType2, pos);
+                cornHandler.create(cType1, pos);
                 break;
             default:
         }

@@ -3,6 +3,8 @@ package Elements;
 public class Position {
 
     private int x, y;
+
+    // Level maximum size
     private final int WIDTH = 30, HEIGHT = 20;
 
     public Position (int x, int y) {
