@@ -1,12 +1,12 @@
 package Util;
 import Elements.*;
 
-public class EventTimer1 extends Thread {
+public class EventTimer extends Thread {
     private int time;
     private ElementHandler eh, eh2;
     private Element e;
 
-    public EventTimer1(int time, ElementHandler eh, ElementHandler eh2, Element e) {
+    public EventTimer(int time, ElementHandler eh, ElementHandler eh2, Element e) {
         this.time = time * 1000;
         this.eh = eh;
         this.eh2 = eh2;

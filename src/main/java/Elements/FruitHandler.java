@@ -1,7 +1,7 @@
 package Elements;
 
 import Util.Messages;
-import Util.EventTimer1;
+import Util.EventTimer;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -39,7 +39,7 @@ public class FruitHandler extends ElementHandler {
 
         Messages.appear(fruit);
 
-        timer = new EventTimer1(fruit.getType().getDisplayTime(), this, null, fruit);
+        timer = new EventTimer(fruit.getType().getDisplayTime(), this, null, fruit);
         timer.start();
         return true;
     }
