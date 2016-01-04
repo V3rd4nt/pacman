@@ -34,10 +34,6 @@ public class Pill extends Element {
         this.pillType = pillType;
     }
 
-    public Position getPosition() {
-        return pos;
-    }
-
     public Type getType() {
         return pillType;
     }
