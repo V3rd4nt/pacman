@@ -1,5 +1,5 @@
 import Elements.*;
-import Util.GameTimerTest;
+import Util.*;
 
 public class Main {
     public static Position pos (int x, int y) {
@@ -7,6 +7,12 @@ public class Main {
     }
 
     public static void main (String[] args) {
+
+        //Game game = new Game ();
+        //game.start();
+
+
+        // TESTING ONLY
 
         // level size see Position class
         Level level = new Level ();

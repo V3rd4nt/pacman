@@ -1,6 +1,7 @@
 package Util;
 import Elements.*;
 
+// CLASS WILL BE DELETED LATER; ONLY FOR TESTING
 
 public class GameTimerTest extends Thread {
     private Level level;

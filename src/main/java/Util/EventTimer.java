@@ -28,7 +28,7 @@ public class EventTimer extends Thread {
                             Thread.sleep(time);
                             ((GhostHandler) eh2).setVulnerable(false);
                         }
-                        System.out.println(eh2.getNumberOfElements() + " GHOSTS left");
+                        System.out.println(eh2.getNumberOfElements() + " ghosts left");
                         getBonus(eh2.getNumberOfElements());
                         break;
                     default:

@@ -3,15 +3,14 @@ package Elements;
 public class Ghost extends Element {
 
     public enum Type {
-        RED(1),
-        BLUE(2),
-        GREEN(3),
-        YELLOW(4);
+        RED,
+        BLUE,
+        GREEN,
+        YELLOW;
 
-        private int color, val;
+        private int val;
 
-        Type(int color) {
-            this.color=color;
+        Type() {
             val = 200;
         }
 
@@ -19,9 +18,6 @@ public class Ghost extends Element {
             return val;
         }
 
-        public int getColor() {
-            return color;
-        }
     }
     private Type ghostType;
 
@@ -34,6 +30,6 @@ public class Ghost extends Element {
     public Type getType () { return  ghostType; }
 
     public String toString () {
-        return ghostType.toString() + " GHOST";
+        return ghostType.toString() + " Ghost";
     }
 }

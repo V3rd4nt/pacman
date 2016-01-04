@@ -1,6 +1,7 @@
 package Elements;
 
 import Util.Messages;
+import Util.Movement;
 
 public class Level {
 
@@ -18,7 +19,7 @@ public class Level {
 
     public boolean createElement (String elementType1, String elementType2, Position pos ) {
         boolean successful;
-        if (pos == null) pos = randomPosition();
+        if (pos == null) pos = Movement.createRandomPosition();
         switch (elementType1) {
             case "FRUIT": if (fruitHandler.create (elementType2, pos)) return true;
             case "PILL": if (pillHandler.create (elementType2, pos)) return true;
@@ -43,15 +44,14 @@ public class Level {
         else return pillHandler.eat(pos) || cornHandler.eat(pos) || ghostHandler.eat(pos);
     }
 
-    public Position randomPosition () {
-        // implement random positioning
-        return new Position (1, 1);
-    }
-
     public static void addScore (int points) {
         score += points;
 
         Messages.displayScore(score);
+    }
+
+    public int getLifes () {
+        return lifes.getAmount();
     }
 
     protected void resetGame () {

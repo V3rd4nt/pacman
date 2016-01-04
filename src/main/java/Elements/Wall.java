@@ -11,6 +11,6 @@ public class Wall extends Element {
 
     @Override
     public String toString() {
-        return "Wall{}";
+        return "Wall";
     }
 }

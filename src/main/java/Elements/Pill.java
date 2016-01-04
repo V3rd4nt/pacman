@@ -39,6 +39,6 @@ public class Pill extends Element {
     }
 
     public String toString () {
-        return pillType.toString() + " PILL";
+        return pillType.toString() + " Pill";
     }
 }
