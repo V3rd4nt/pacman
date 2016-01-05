@@ -1,47 +1,57 @@
 package Elements;
 
+import Util.Messages;
+import Util.Movement;
+
 public class Level {
 
     private static int score = 0, highscore = 0;
-    private ElementHandler fruitHandler, pillHandler, cornHandler;
+    private ElementHandler fruitHandler, ghostHandler, pillHandler, cornHandler;
     private Lifes lifes;
 
     public Level () {
         fruitHandler = new FruitHandler();
-        pillHandler = new PillHandler();
+        ghostHandler = new GhostHandler();
+        pillHandler = new PillHandler(ghostHandler);
         cornHandler = new CornHandler();
         lifes = new Lifes (3);
     }
 
-    public void createElement (String elementType1, String elementType2, Position pos) {
-        if (pos == null) pos = randomPosition();
+    public boolean createElement (String elementType1, String elementType2, Position pos ) {
+        boolean successful;
+        if (pos == null) pos = Movement.createRandomPosition();
         switch (elementType1) {
-            case "FRUIT":
-                fruitHandler.create (elementType2, pos);
-                break;
-            case "PILL":
-                pillHandler.create (elementType2, pos);
-                break;
-            default:
+            case "FRUIT": if (fruitHandler.create (elementType2, pos)) return true;
+            case "PILL": if (pillHandler.create (elementType2, pos)) return true;
+            case "GHOST": if (ghostHandler.create(elementType2, pos)) return true;
+            default: return false;
         }
     }
 
-    public void createElement (String elementType1, Position pos) {
+    public boolean createElement (String elementType1, Position pos) {
         switch (elementType1) {
-            case "CORN":
-                cornHandler.create(elementType1, pos);
-                break;
-            default:
+            case "CORN": if (cornHandler.create(elementType1, pos)) return true;
+            default: return false;
         }
     }
 
-    public Position randomPosition () {
-        // implement random positioning
-        return new Position (1, 1);
+    public boolean eat (Position pos) {
+        if (fruitHandler.eat(pos)) {
+            // fruit and corn on the same position
+            cornHandler.eat(pos);
+            return true;
+        }
+        else return pillHandler.eat(pos) || cornHandler.eat(pos) || ghostHandler.eat(pos);
     }
 
     public static void addScore (int points) {
         score += points;
+
+        Messages.displayScore(score);
+    }
+
+    public int getLifes () {
+        return lifes.getAmount();
     }
 
     protected void resetGame () {

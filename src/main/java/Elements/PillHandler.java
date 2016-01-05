@@ -1,14 +1,23 @@
 package Elements;
 
+import Util.Messages;
+import Util.EventTimer;
+
 import java.util.ArrayList;
 import java.util.List;
 
-public class PillHandler implements ElementHandler {
+public class PillHandler extends ElementHandler {
     private List<Pill> pills;
-    private static int numberOfGhotstLeft = 0;
+    private Thread timer;
+    private ElementHandler eh;
 
     public PillHandler () {
         pills = new ArrayList<>();
+    }
+
+    public PillHandler (ElementHandler eh) {
+        pills = new ArrayList<>();
+        this.eh = eh;
     }
 
     @Override
@@ -17,14 +26,17 @@ public class PillHandler implements ElementHandler {
 
         switch(elementType) {
             case "POWER":
-                pill = new Pill(Pill.PillType.POWER, pos);
+                pill = new Pill(Pill.Type.POWER, pos);
                 break;
             default: return false;
         }
-        int maxOcurrence = pill.getPillType().getMaxOcurrence();
+        int maxOcurrence = pill.getType().getMaxOcurrence();
         if (maxOcurrence > 0) {
             pills.add(pill);
-            pill.getPillType().setMaxOcurrence(maxOcurrence-1);
+            pill.getType().setMaxOcurrence(maxOcurrence-1);
+
+            Messages.appear(pill);
+
             return true;
         }
         return false;
@@ -34,8 +46,9 @@ public class PillHandler implements ElementHandler {
     public boolean eat (Position pos) {
         for (Pill pill : pills) {
             if (pill.getPosition().getX() == pos.getX() && pill.getPosition().getY() == pos.getY()) {
-                int effectTime = pill.getPillType().getEffectTime();
-                startPillEffect(pill, effectTime);
+                int effectTime = pill.getType().getEffectTime();
+                timer = new EventTimer(effectTime, this, eh, pill);
+                timer.start();
                 pills.remove(pill);
                 return true;
             }
@@ -48,7 +61,8 @@ public class PillHandler implements ElementHandler {
         return pills.size();
     }
 
-    private void startPillEffect (Pill pill, int effectTime) {
-        pill.pillEffect (pill.getPillType(), effectTime);
+    @Override
+    public List<?> getElements() {
+        return pills;
     }
 }

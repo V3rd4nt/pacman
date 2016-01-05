@@ -1,10 +1,14 @@
 package Elements;
 
+import Util.Messages;
+import Util.EventTimer;
+
 import java.util.ArrayList;
 import java.util.List;
 
-public class FruitHandler implements ElementHandler {
+public class FruitHandler extends ElementHandler {
     private List<Fruit> fruits;
+    private Thread timer;
 
     public FruitHandler () {
         fruits = new ArrayList<>();
@@ -15,32 +19,36 @@ public class FruitHandler implements ElementHandler {
         Fruit fruit;
         switch(elementType) {
             case "CHERRY":
-                fruit = new Fruit(Fruit.FruitType.CHERRY, pos);
+                fruit = new Fruit(Fruit.Type.CHERRY, pos);
                 break;
             case "APPLE":
-                fruit = new Fruit(Fruit.FruitType.APPLE, pos);
+                fruit = new Fruit(Fruit.Type.APPLE, pos);
                 break;
             case "STRAWBERRY":
-                fruit = new Fruit(Fruit.FruitType.STRAWBERRY, pos);
+                fruit = new Fruit(Fruit.Type.STRAWBERRY, pos);
                 break;
             case "PEACH":
-                fruit = new Fruit(Fruit.FruitType.PEACH, pos);
+                fruit = new Fruit(Fruit.Type.PEACH, pos);
                 break;
             case "BANANA":
-                fruit = new Fruit(Fruit.FruitType.BANANA, pos);
+                fruit = new Fruit(Fruit.Type.BANANA, pos);
                 break;
             default: return false;
         }
         fruits.add(fruit);
-        destroy(fruit, fruit.getFruitType().getDisplayTime());
+
+        Messages.appear(fruit);
+
+        timer = new EventTimer(fruit.getType().getDisplayTime(), this, null, fruit);
+        timer.start();
         return true;
     }
 
     @Override
     public boolean eat (Position pos) {
-        int points = 0;
         for (Fruit fruit : fruits) {
             if (fruit.getPosition().getX() == pos.getX() && fruit.getPosition().getY() == pos.getY()) {
+                timer.interrupt();
                 getPoints(fruit);
                 fruits.remove(fruit);
                 return true;
@@ -54,16 +62,13 @@ public class FruitHandler implements ElementHandler {
         return fruits.size();
     }
 
-    private boolean destroy (Fruit fruit, int displayTime) {
-        // countdown display time and delete fruit aftewards
-
-        if (fruits.contains(fruit)) {
-            fruits.remove(fruit);
-            return true;
-        } else return false;
+    @Override
+    public List<?> getElements() {
+        return fruits;
     }
 
     private void getPoints (Fruit fruit) {
-        Level.addScore(fruit.getFruitType().getValue());
+        Level.addScore(fruit.getType().getValue());
     }
+
 }

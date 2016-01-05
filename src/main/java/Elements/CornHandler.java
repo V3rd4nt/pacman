@@ -3,7 +3,7 @@ package Elements;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CornHandler implements ElementHandler {
+public class CornHandler extends ElementHandler {
     List<Corn> corns;
 
     public CornHandler() {
@@ -34,6 +34,11 @@ public class CornHandler implements ElementHandler {
     @Override
     public int getNumberOfElements() {
         return corns.size();
+    }
+
+    @Override
+    public List<?> getElements() {
+        return corns;
     }
 
     private void getPoints (Corn corn) {

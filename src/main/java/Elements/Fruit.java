@@ -1,8 +1,8 @@
 package Elements;
 
-public class Fruit {
+public class Fruit extends Element {
 
-    public enum FruitType {
+    public enum Type {
         CHERRY(200, 5),
         APPLE(400, 5),
         STRAWBERRY(800, 4),
@@ -10,7 +10,7 @@ public class Fruit {
         BANANA(3200, 3);
         private int val, displayTime;
 
-        FruitType(int val, int displayTime) {
+        Type (int val, int displayTime) {
             this.val = val;
             this.displayTime = displayTime;
         }
@@ -24,18 +24,17 @@ public class Fruit {
         }
     }
 
-    private FruitType fruitType;
-    private Position pos;
+    protected Type fruitType;
 
-    public Fruit (FruitType fruitType, Position pos) {
+    public Fruit (Type fruitType, Position pos) {
 
+        super(pos);
         this.fruitType = fruitType;
-        this.pos = pos;
     }
 
-    public Position getPosition () {
-        return pos;
-    }
+    public Type getType () { return  fruitType; }
 
-    public FruitType getFruitType () { return  fruitType; }
+    public String toString () {
+        return fruitType.toString();
+    }
 }

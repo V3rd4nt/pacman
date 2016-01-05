@@ -1,14 +1,35 @@
 package Elements;
 
-public class Ghost {
+public class Ghost extends Element {
 
-    private Position pos;
+    public enum Type {
+        RED,
+        BLUE,
+        GREEN,
+        YELLOW;
 
-    public Ghost (Position pos) {
-        this.pos = pos;
+        private int val;
+
+        Type() {
+            val = 200;
+        }
+
+        public int getValue() {
+            return val;
+        }
+
+    }
+    private Type ghostType;
+
+
+    public Ghost (Type ghostType, Position pos) {
+        super (pos);
+        this.ghostType = ghostType;
     }
 
-    public Position getPosition () {
-        return pos;
+    public Type getType () { return  ghostType; }
+
+    public String toString () {
+        return ghostType.toString() + " Ghost";
     }
 }
