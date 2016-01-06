@@ -6,6 +6,7 @@ import java.util.Random;
 
 public class Movement {
 
+    // für was brauchst du das?
     public enum Direction{
         Left,
         Right,
@@ -21,7 +22,7 @@ public class Movement {
 
     public static Position createNextPositionFrom (Position current) {
         Position pos = current;
-        boolean moved = false;
+        boolean moved;
         Random rndNr = new Random();
         //0 = right, 1 = Up, 2 = left, 3 = bottom
         do {
@@ -43,9 +44,6 @@ public class Movement {
                     break;
             }
         } while (!moved);
-
-
         return pos;
     }
-
 }

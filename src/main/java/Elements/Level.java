@@ -52,14 +52,18 @@ public class Level {
         else return pillHandler.eat(pos) || cornHandler.eat(pos) || ghostHandler.eat(pos);
     }
 
-    public void setcorns () {
-
+    public void setAllCorns () {
+        // TODO Fill playing field with corns, except positions of pills and starting position of pacman
     }
 
     public static void addScore (int points) {
         score += points;
 
         Messages.displayScore(score);
+    }
+
+    public static int getScore () {
+        return score;
     }
 
     public int getLifes () {
@@ -86,6 +90,7 @@ public class Level {
         return pacManhandler;
     }
 
+    // ?
     public List<ElementHandler> getEatableElementsHandler(){
         List<ElementHandler> listElemHandler = new ArrayList<ElementHandler>();
         listElemHandler.add(this.cornHandler);

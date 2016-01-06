@@ -9,6 +9,9 @@ import java.util.List;
 /**
  * Created by Florian on 06/01/16.
  */
+
+// für was brauchst du diese klasse?
+
 public class PacmanHandler extends ElementHandler{
 
     Pacman pacManFig;

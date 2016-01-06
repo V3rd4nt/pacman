@@ -24,12 +24,14 @@ public class FruitHandler extends ElementHandler {
 
     @Override
     public boolean create () {
-        if (fruits.peek() != null) {
-            Fruit fruit = fruits.pop();
-            Messages.appear(fruit);
-            timer = new EventTimer(fruit.getType().getDisplayTime(), this, null, fruit);
-            timer.start();
-            return true;
+        if (!fruits.isEmpty()) {
+            if (fruits.peek() != null) {
+                Fruit fruit = fruits.peek();
+                Messages.appear(fruit);
+                timer = new EventTimer(fruit.getType().getDisplayTime(), this, null, fruit);
+                timer.start();
+                return true;
+            } else return false;
         } else return false;
     }
 
@@ -45,7 +47,7 @@ public class FruitHandler extends ElementHandler {
 
     @Override
     public boolean eat (Position pos) {
-        if (fruits.size() != 0) {
+        if (!fruits.isEmpty()) {
             if (fruits.peek().getPosition().getX() == pos.getX() && fruits.peek().getPosition().getY() == pos.getY()) {
                 timer.interrupt();
                 getPoints(fruits.peek());
@@ -54,9 +56,12 @@ public class FruitHandler extends ElementHandler {
                 create();
                 return true;
             }
-            //System.out.println("No fruit found");
             return false;
         } else return false;
+    }
+
+    public void stopTimer () {
+        timer.interrupt();
     }
 
     @Override

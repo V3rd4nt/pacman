@@ -61,18 +61,12 @@ public class GhostHandler extends ElementHandler {
                 if (vulnerable) {
                     getPoints(ghost);
                     ghosts.remove(ghost);
-
                     Messages.pacmanEat(ghost);
-
                     return true;
                 } else {
-
                     Messages.pacmanEatenBy(ghost);
-
                     lifes.looseLife();
-
                     Messages.lifeLost(lifes.getAmount());
-
                     return false;
                 }
             }

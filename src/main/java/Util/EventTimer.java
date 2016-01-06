@@ -7,7 +7,7 @@ public class EventTimer extends Thread {
     private Element e;
 
     public EventTimer(int time, ElementHandler eh, ElementHandler eh2, Element e) {
-        this.time = time;
+        this.time = time*10;
         this.eh = eh;
         this.eh2 = eh2;
         this.e = e;
@@ -26,19 +26,16 @@ public class EventTimer extends Thread {
                             Thread.sleep(time);
                             ((GhostHandler) eh2).setVulnerable(false);
                         }
-                        System.out.println(eh2.getNumberOfElements() + " ghosts left on the playing field");
                         getBonus(eh2.getNumberOfElements());
                         break;
                     default:
                 }
             }
             if (eh instanceof FruitHandler) {
-                while (true) {
-                    //System.out.println("Show " + e.toString() + " for " + time + " seconds");
+                while (!interrupted()) {
                     Thread.sleep(time);
-                    //Messages.vanish(e);
                     e.setPosition(Movement.createRandomPosition());
-                    //Messages.position(e);
+                    //Messages.appear(e);
                 }
             }
         } catch (InterruptedException e) {
