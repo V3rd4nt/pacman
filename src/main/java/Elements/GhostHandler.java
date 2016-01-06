@@ -7,36 +7,48 @@ import java.util.List;
 
 public class GhostHandler extends ElementHandler {
     private List<Ghost> ghosts;
+    private int ocurrence;
     private boolean vulnerable;
 
     public GhostHandler () {
         ghosts = new ArrayList<>();
         vulnerable = false;
+        ocurrence = 0;
     }
 
     @Override
-    public boolean create (String elementType, Position pos) {
+    public boolean create() {
+        return false;
+    }
+
+    @Override
+    public boolean create (Position pos) {
+
         Ghost ghost;
-        switch(elementType) {
-            case "RED":
+        switch(ocurrence) {
+            case 0:
                 ghost = new Ghost (Ghost.Type.RED, pos);
                 break;
-            case "BLUE":
+            case 1:
                 ghost = new Ghost (Ghost.Type.BLUE, pos);
                 break;
-            case "GREEN":
+            case 2:
                 ghost = new Ghost (Ghost.Type.GREEN, pos);
                 break;
-            case "YELLOW":
+            case 3:
                 ghost = new Ghost (Ghost.Type.YELLOW, pos);
                 break;
             default: return false;
         }
+        ocurrence += 1;
         ghosts.add(ghost);
-
         Messages.appear(ghost);
-
         return true;
+    }
+
+    @Override
+    public boolean create(String elementType, Position pos) {
+        return false;
     }
 
     @Override

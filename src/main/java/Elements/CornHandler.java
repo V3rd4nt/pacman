@@ -11,12 +11,24 @@ public class CornHandler extends ElementHandler {
     }
 
     @Override
-    public boolean create (String elementType, Position pos) {
+    public boolean create() {
+        return false;
+    }
 
-        // impement check if position is already used by another corn
-        Corn corn = new Corn(pos);
-        corns.add(corn);
+    @Override
+    public boolean create (Position pos) {
+        for (Corn corn : corns) {
+            if (corn.getPosition().getX() == pos.getX() && corn.getPosition().getY() == pos.getY()) {
+                return false;
+            }
+        }
+        corns.add(new Corn(pos));
         return true;
+    }
+
+    @Override
+    public boolean create(String elementType, Position pos) {
+        return false;
     }
 
     @Override

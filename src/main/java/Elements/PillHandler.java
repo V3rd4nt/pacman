@@ -21,6 +21,16 @@ public class PillHandler extends ElementHandler {
     }
 
     @Override
+    public boolean create() {
+        return false;
+    }
+
+    @Override
+    public boolean create(Position pos) {
+        return false;
+    }
+
+    @Override
     public boolean create (String elementType, Position pos) {
         Pill pill;
 

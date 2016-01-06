@@ -19,20 +19,19 @@ public class Level {
     }
 
     public boolean createElement (String elementType1, String elementType2, Position pos ) {
-        boolean successful;
         if (pos == null) pos = Movement.createRandomPosition();
         switch (elementType1) {
-            case "FRUIT": if (fruitHandler.create (elementType2, pos)) return true;
             case "PILL": if (pillHandler.create (elementType2, pos)) return true;
-            case "GHOST": if (ghostHandler.create(elementType2, pos)) return true;
             default: return false;
         }
     }
 
     public boolean createElement (String elementType1, Position pos) {
+        if (pos == null) pos = Movement.createRandomPosition();
         switch (elementType1) {
-            case "CORN": if (cornHandler.create(elementType1, pos)) return true;
-            case "PACMAN": if (pacManhandler.create(elementType1, pos)) return true;
+            case "CORN": if (cornHandler.create(pos)) return true;
+            case "PACMAN": if (pacManhandler.create(pos)) return true;
+            case "GHOST": if (ghostHandler.create(pos)) return true;
             default: return false;
         }
     }
@@ -40,6 +39,9 @@ public class Level {
     public ElementHandler getElementHandler (String elementType){
         switch (elementType) {
             case "PACMAN": return pacManhandler;
+            case "FRUIT": return fruitHandler;
+            case "PILL": return pillHandler;
+            case "CORN": return cornHandler;
             default: return null;
         }
     }

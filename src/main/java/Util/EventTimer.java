@@ -20,7 +20,7 @@ public class EventTimer extends Thread {
                 switch (((Pill)e).getType()) {
                     case POWER:
                         if (eh.getElements().contains(e)) {
-                            Messages.remove(e);
+                            Messages.pacmanEat(e);
                             eh.getElements().remove(e);
                         }
                         if (eh2 instanceof GhostHandler) {
@@ -28,17 +28,19 @@ public class EventTimer extends Thread {
                             Thread.sleep(time);
                             ((GhostHandler) eh2).setVulnerable(false);
                         }
-                        System.out.println(eh2.getNumberOfElements() + " ghosts left");
+                        System.out.println(eh2.getNumberOfElements() + " ghosts left on the playing field");
                         getBonus(eh2.getNumberOfElements());
                         break;
                     default:
                 }
             }
             if (eh instanceof FruitHandler) {
-                Thread.sleep(time);
-                if (eh.getElements().contains(e)) {
-                    Messages.remove(e);
-                    eh.getElements().remove(e);
+                while (!interrupted()) {
+                    Thread.sleep(time);
+                    if (eh.getElements().contains(e)) {
+                        Messages.vanish(e);
+                        e.setPosition(Movement.createRandomPosition());
+                    }
                 }
             }
         } catch (InterruptedException e) {
