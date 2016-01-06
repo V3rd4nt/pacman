@@ -2,10 +2,13 @@ package Elements;
 
 import Util.Messages;
 import Util.Movement;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Level {
 
     private static int score = 0, highscore = 0;
+
     private ElementHandler fruitHandler, ghostHandler, pillHandler, cornHandler, pacManhandler;
     private Lifes lifes;
 
@@ -37,11 +40,33 @@ public class Level {
         }
     }
 
-    public ElementHandler getElementHandler (String elementType){
-        switch (elementType) {
-            case "PACMAN": return pacManhandler;
-            default: return null;
-        }
+    public ElementHandler getFruitHandler() {
+        return fruitHandler;
+    }
+
+    public ElementHandler getGhostHandler() {
+        return ghostHandler;
+    }
+
+    public ElementHandler getPillHandler() {
+        return pillHandler;
+    }
+
+    public ElementHandler getCornHandler() {
+        return cornHandler;
+    }
+
+    public ElementHandler getPacManhandler() {
+        return pacManhandler;
+    }
+
+    public List<ElementHandler> getEatableElementsHandler(){
+        List<ElementHandler> listElemHandler = new ArrayList<ElementHandler>();
+        listElemHandler.add(this.cornHandler);
+        listElemHandler.add(this.pillHandler);
+        listElemHandler.add(this.ghostHandler);
+        listElemHandler.add(this.pillHandler);
+        return  listElemHandler;
     }
 
     public boolean eat (Position pos) {

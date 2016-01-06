@@ -26,14 +26,18 @@ public class Game extends Thread {
             // TODO move each ghost around and display their positions
 
             // move pacman around
-            ElementHandler elem = level.getElementHandler("PACMAN");
+            ElementHandler elem = level.getPacManhandler();
             if (elem instanceof PacmanHandler){
                 pacmanHandler = (PacmanHandler) elem;
                 pacmanHandler.move();
+                for (ElementHandler elemHandler:level.getEatableElementsHandler()
+                     ) {
+                    pacmanHandler.eat(elemHandler);
+                }
             }
 
             // TODO implement eat method in pacman-class and delete it in level-class
-            level.eat(pos);
+            //level.eat(pos);
 
             if (level.getLifes() == 0) break;
         }

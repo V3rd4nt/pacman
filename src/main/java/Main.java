@@ -22,29 +22,37 @@ public class Main {
         level.createElement("GHOST", "BLUE", Position.getCenterPostition());
         level.createElement("GHOST", "GREEN", Position.getCenterPostition());
         level.createElement("GHOST", "YELLOW", Position.getCenterPostition());
+        level.createElement ("CORN", pos (15,14));
+        level.createElement ("CORN", pos (14,15));
+        // placement of power pill
+        level.createElement("PILL", "POWER", pos (15,16));
         level.createElement("PACMAN", Position.getStartingPos());
-        ElementHandler elem = level.getElementHandler("PACMAN");
+        ElementHandler elem = level.getPacManhandler();
         if (elem instanceof PacmanHandler){
             PacmanHandler pacmanHandler = (PacmanHandler) elem;
             Pacman pacman = ((Pacman) pacmanHandler.getElements().get(0));
             if (pacman != null){
                 pacmanHandler.move();
+                for (ElementHandler elemHandler:level.getEatableElementsHandler()
+                        ) {
+                    pacmanHandler.eat(elemHandler);
+                }
             }
 
         }
         // placement of power pill
-        level.createElement("PILL", "POWER", pos (2,2));
+        //level.createElement("PILL", "POWER", pos (15,16));
 
         // Example 1: eat fruit and corn from the same field
         level.createElement ("CORN", pos (1,1));
         level.createElement("FRUIT", "BANANA", pos (1,1));
-        level.eat(pos (1,1));
+        //level.eat(pos (1,1));
 
         // Example 2: not able to eat the peach and it disappears
         level.createElement("FRUIT", "PEACH", pos (9,5));
 
         // Example 3: Pacman ate the power pil and eats all the ghosts
-        level.eat(pos (2,2));
+        //level.eat(pos (2,2));
         Thread timer = new GameTimerTest(level);
         timer.start();
     }

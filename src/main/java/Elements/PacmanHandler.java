@@ -28,6 +28,10 @@ public class PacmanHandler extends ElementHandler{
         return false;
     }
 
+    public boolean eat(ElementHandler elementHandler){
+        return elementHandler.eat(pacManFig.getPosition());
+    }
+
     @Override
     public int getNumberOfElements() {
         return 1;
@@ -48,4 +52,5 @@ public class PacmanHandler extends ElementHandler{
         Messages.move(this.pacManFig);
         return true;
     }
+
 }

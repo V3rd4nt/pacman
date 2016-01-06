@@ -1,5 +1,7 @@
 package Elements;
 
+import Util.Messages;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,6 +18,7 @@ public class CornHandler extends ElementHandler {
         // impement check if position is already used by another corn
         Corn corn = new Corn(pos);
         corns.add(corn);
+        Messages.appear(corn);
         return true;
     }
 
@@ -25,6 +28,7 @@ public class CornHandler extends ElementHandler {
             if (corn.getPosition().getX() == pos.getX() && corn.getPosition().getY() == pos.getY()) {
                 getPoints(corn);
                 corns.remove(corn);
+                Messages.remove(corn);
                 return true;
             }
         }
