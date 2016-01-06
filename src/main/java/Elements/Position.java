@@ -43,12 +43,8 @@ public class Position {
 
     @Override
     public String toString() {
-        return "Position{" +
-                "x=" + x +
-                ", y=" + y +
-                '}';
+        return "Position {" + "x = " + x + ", y = " + y + '}';
     }
-
 
     public static int getWIDTH() {
         return WIDTH;
@@ -63,7 +59,6 @@ public class Position {
         int x = WIDTH / 2;
         int y = HEIGHT / 2;
         return  new Position(x, y);
-
     }
 
 
@@ -72,6 +67,5 @@ public class Position {
         int x = WIDTH / 2;
         int y = (HEIGHT / 4) * 3;
         return  new Position(x, y);
-
     }
 }

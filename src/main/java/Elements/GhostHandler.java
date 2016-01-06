@@ -1,6 +1,7 @@
 package Elements;
 
 import Util.Messages;
+import Util.Movement;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,11 +10,13 @@ public class GhostHandler extends ElementHandler {
     private List<Ghost> ghosts;
     private int ocurrence;
     private boolean vulnerable;
+    private Lifes lifes;
 
-    public GhostHandler () {
+    public GhostHandler (Lifes lifes) {
         ghosts = new ArrayList<>();
         vulnerable = false;
         ocurrence = 0;
+        this.lifes = lifes;
     }
 
     @Override
@@ -63,7 +66,13 @@ public class GhostHandler extends ElementHandler {
 
                     return true;
                 } else {
+
                     Messages.pacmanEatenBy(ghost);
+
+                    lifes.looseLife();
+
+                    Messages.lifeLost(lifes.getAmount());
+
                     return false;
                 }
             }

@@ -7,25 +7,24 @@ import java.util.List;
 
 public class Level {
 
-    private static int score = 0, highscore = 0;
+    private static int score = 0;
 
     private ElementHandler fruitHandler, ghostHandler, pillHandler, cornHandler, pacManhandler;
     private Lifes lifes;
 
-    public Level () {
+    public Level (Lifes lifes) {
         fruitHandler = new FruitHandler();
-        ghostHandler = new GhostHandler();
+        ghostHandler = new GhostHandler(lifes);
         pillHandler = new PillHandler(ghostHandler);
         cornHandler = new CornHandler();
         pacManhandler = new PacmanHandler();
-        lifes = new Lifes (3);
+        this.lifes = lifes;
     }
 
     public boolean createElement (String elementType1, String elementType2, Position pos ) {
-        boolean successful;
         if (pos == null) pos = Movement.createRandomPosition();
         switch (elementType1) {
-            case "PILL": if (pillHandler.create (elementType2, pos)) return true;
+            case "PILL": return pillHandler.create (elementType2, pos);
             default: return false;
         }
     }
@@ -33,13 +32,38 @@ public class Level {
     public boolean createElement (String elementType1, Position pos) {
         if (pos == null) pos = Movement.createRandomPosition();
         switch (elementType1) {
-            case "CORN": if (cornHandler.create(pos)) return true;
+            case "CORN": return cornHandler.create(pos);
+            case "GHOST": return ghostHandler.create(pos);
+            case "FRUIT": return fruitHandler.create();
 
                 // ich glaub elementtype kannst beim pacman entfernen
-            case "PACMAN": if (pacManhandler.create(elementType1, pos)) return true;
-            case "GHOST": if (ghostHandler.create(pos)) return true;
+            case "PACMAN": return pacManhandler.create(elementType1, pos);
+
             default: return false;
         }
+    }
+
+    public boolean eat (Position pos) {
+        if (fruitHandler.eat(pos)) {
+            // fruit and corn on the same position
+            cornHandler.eat(pos);
+            return true;
+        }
+        else return pillHandler.eat(pos) || cornHandler.eat(pos) || ghostHandler.eat(pos);
+    }
+
+    public void setcorns () {
+
+    }
+
+    public static void addScore (int points) {
+        score += points;
+
+        Messages.displayScore(score);
+    }
+
+    public int getLifes () {
+        return lifes.getAmount();
     }
 
     public ElementHandler getFruitHandler() {
@@ -69,33 +93,5 @@ public class Level {
         listElemHandler.add(this.ghostHandler);
         listElemHandler.add(this.pillHandler);
         return  listElemHandler;
-    }
-
-    public boolean eat (Position pos) {
-        if (fruitHandler.eat(pos)) {
-            // fruit and corn on the same position
-            cornHandler.eat(pos);
-            return true;
-        }
-        else return pillHandler.eat(pos) || cornHandler.eat(pos) || ghostHandler.eat(pos);
-    }
-
-    public static void addScore (int points) {
-        score += points;
-
-        Messages.displayScore(score);
-    }
-
-    public int getLifes () {
-        return lifes.getAmount();
-    }
-
-    protected void resetGame () {
-        highscore = score;
-        score = 0;
-        fruitHandler = new FruitHandler();
-        pillHandler = new PillHandler();
-        cornHandler = new CornHandler();
-        lifes = new Lifes (3);
     }
 }

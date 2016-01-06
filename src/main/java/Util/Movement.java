@@ -26,7 +26,8 @@ public class Movement {
         //0 = right, 1 = Up, 2 = left, 3 = bottom
         do {
             moved = false;
-            int direction = rndNr.nextInt(4);
+            int direction = rndNr.nextInt(1000);
+            direction /= 250;
             switch (direction){
                 case 0:
                     moved = pos.setX(pos.getX() - 1);

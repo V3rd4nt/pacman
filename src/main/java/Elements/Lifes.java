@@ -19,5 +19,4 @@ public class Lifes {
         }
         else return false;
     }
-
 }

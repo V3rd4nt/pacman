@@ -7,7 +7,7 @@ public class EventTimer extends Thread {
     private Element e;
 
     public EventTimer(int time, ElementHandler eh, ElementHandler eh2, Element e) {
-        this.time = time * 1000;
+        this.time = time;
         this.eh = eh;
         this.eh2 = eh2;
         this.e = e;
@@ -19,10 +19,8 @@ public class EventTimer extends Thread {
             if (eh instanceof PillHandler) {
                 switch (((Pill)e).getType()) {
                     case POWER:
-                        if (eh.getElements().contains(e)) {
-                            Messages.pacmanEat(e);
-                            eh.getElements().remove(e);
-                        }
+                        Messages.pacmanEat(e);
+                        eh.getElements().remove(e);
                         if (eh2 instanceof GhostHandler) {
                             ((GhostHandler) eh2).setVulnerable(true);
                             Thread.sleep(time);
@@ -35,12 +33,12 @@ public class EventTimer extends Thread {
                 }
             }
             if (eh instanceof FruitHandler) {
-                while (!interrupted()) {
+                while (true) {
+                    //System.out.println("Show " + e.toString() + " for " + time + " seconds");
                     Thread.sleep(time);
-                    if (eh.getElements().contains(e)) {
-                        Messages.vanish(e);
-                        e.setPosition(Movement.createRandomPosition());
-                    }
+                    //Messages.vanish(e);
+                    e.setPosition(Movement.createRandomPosition());
+                    //Messages.position(e);
                 }
             }
         } catch (InterruptedException e) {
@@ -51,9 +49,11 @@ public class EventTimer extends Thread {
     protected void getBonus (int numberOfGhostsLeft) {
         switch (numberOfGhostsLeft) {
             case 1:
+                System.out.print("Bonus ");
                 Level.addScore(400);
                 break;
             case 0:
+                System.out.print("Bonus ");
                 Level.addScore(800);
                 break;
             default:

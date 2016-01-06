@@ -8,14 +8,10 @@ public class Main {
 
     public static void main (String[] args) {
 
-        //Game game = new Game ();
-        //game.start();
-
-
         // TESTING ONLY
 
         // level size see Position class
-        Level level = new Level ();
+        Level level = new Level (new Lifes (3));
 
         // ghost creation
         level.createElement("GHOST", Position.getCenterPostition());

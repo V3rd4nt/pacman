@@ -4,8 +4,9 @@ import Elements.*;
 
 public class Messages {
 
-    public static void position (Element e) { System.out.println(e.toString() + " is at position (X: "
-            + e.getPosition().getX() + ", Y: " + e.getPosition().getY()); }
+    public static void position (Element e) {
+        System.out.println(e.toString() + " is at " + e.getPosition().toString());
+    }
 
     public static void appear (Element e) {
         System.out.println(e.toString() +  " appeared on the playing field at " + e.getPosition().toString());
@@ -20,6 +21,8 @@ public class Messages {
     public static void move (Element e) { System.out.println(e.toString() +  " moved to " + e.getPosition().toString()); }
 
     public static void displayScore (int score) { System.out.println("Score: " + score); }
+
+    public static void lifeLost (int lifes) { System.out.println("Lost one life!\nCurrent lifes: " + lifes); }
 
     public static void gameOver () { System.out.println("Game Over!"); }
 }

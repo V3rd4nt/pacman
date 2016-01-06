@@ -19,7 +19,7 @@ public class FruitHandler extends ElementHandler {
         fruits.push(new Fruit(Fruit.Type.PEACH, Movement.createRandomPosition()));
         fruits.push(new Fruit(Fruit.Type.STRAWBERRY, Movement.createRandomPosition()));
         fruits.push(new Fruit(Fruit.Type.APPLE, Movement.createRandomPosition()));
-        fruits.push(new Fruit(Fruit.Type.PEACH, Movement.createRandomPosition()));
+        fruits.push(new Fruit(Fruit.Type.CHERRY, Movement.createRandomPosition()));
     }
 
     @Override
@@ -45,13 +45,18 @@ public class FruitHandler extends ElementHandler {
 
     @Override
     public boolean eat (Position pos) {
-        if (fruits.peek().getPosition().getX() == pos.getX() && fruits.peek().getPosition().getY() == pos.getY()) {
+        if (fruits.size() != 0) {
+            if (fruits.peek().getPosition().getX() == pos.getX() && fruits.peek().getPosition().getY() == pos.getY()) {
                 timer.interrupt();
                 getPoints(fruits.peek());
+                Messages.pacmanEat(fruits.peek());
                 fruits.pop();
+                create();
                 return true;
             }
-        return false;
+            //System.out.println("No fruit found");
+            return false;
+        } else return false;
     }
 
     @Override
