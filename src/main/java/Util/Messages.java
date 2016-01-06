@@ -8,7 +8,7 @@ public class Messages {
             + e.getPosition().getX() + ", Y: " + e.getPosition().getY()); }
 
     public static void appear (Element e) {
-        System.out.println(e.toString() +  " appeared on the playing field");
+        System.out.println(e.toString() +  " appeared on the playing field at " + e.getPosition().toString());
     }
 
     public static void remove (Element e) { System.out.println(e.toString() +  " removed"); }
@@ -17,7 +17,7 @@ public class Messages {
 
     public static void pacmanEat (Element e) { System.out.println(e.toString() +  " eaten by Pacman"); }
 
-    public static void move (Element e) { System.out.println(e.toString() +  " moved to Position: " + e.getPosition().toString()); }
+    public static void move (Element e) { System.out.println(e.toString() +  " moved to " + e.getPosition().toString()); }
 
     public static void displayScore (int score) { System.out.println("Score: " + score); }
 

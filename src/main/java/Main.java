@@ -18,28 +18,17 @@ public class Main {
         Level level = new Level ();
 
         // ghost creation
-        level.createElement("GHOST", "RED", pos (6,1));
-        level.createElement("GHOST", "BLUE", pos (6,2));
-        level.createElement("GHOST", "GREEN", pos (6,3));
-        level.createElement("GHOST", "YELLOW", pos (6,4));
-        level.createElement("PACMAN",new Position (1,1));
+        level.createElement("GHOST", "RED", Position.getCenterPostition());
+        level.createElement("GHOST", "BLUE", Position.getCenterPostition());
+        level.createElement("GHOST", "GREEN", Position.getCenterPostition());
+        level.createElement("GHOST", "YELLOW", Position.getCenterPostition());
+        level.createElement("PACMAN", Position.getStartingPos());
         ElementHandler elem = level.getElementHandler("PACMAN");
         if (elem instanceof PacmanHandler){
             PacmanHandler pacmanHandler = (PacmanHandler) elem;
             Pacman pacman = ((Pacman) pacmanHandler.getElements().get(0));
             if (pacman != null){
-                pacmanHandler.move(Movement.createNextPositionFrom(pacman.getPosition()));
-                pacmanHandler.move(Movement.createNextPositionFrom(pacman.getPosition()));
-                pacmanHandler.move(Movement.createNextPositionFrom(pacman.getPosition()));
-                pacmanHandler.move(Movement.createNextPositionFrom(pacman.getPosition()));
-                pacmanHandler.move(Movement.createNextPositionFrom(pacman.getPosition()));
-                pacmanHandler.move(Movement.createNextPositionFrom(pacman.getPosition()));
-                pacmanHandler.move(Movement.createNextPositionFrom(pacman.getPosition()));
-                pacmanHandler.move(Movement.createNextPositionFrom(pacman.getPosition()));
-                pacmanHandler.move(Movement.createNextPositionFrom(pacman.getPosition()));
-                pacmanHandler.move(Movement.createNextPositionFrom(pacman.getPosition()));
-                pacmanHandler.move(Movement.createNextPositionFrom(pacman.getPosition()));
-                pacmanHandler.move(Movement.createNextPositionFrom(pacman.getPosition()));
+                pacmanHandler.move();
             }
 
         }
