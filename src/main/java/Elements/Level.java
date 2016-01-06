@@ -25,17 +25,19 @@ public class Level {
         boolean successful;
         if (pos == null) pos = Movement.createRandomPosition();
         switch (elementType1) {
-            case "FRUIT": if (fruitHandler.create (elementType2, pos)) return true;
             case "PILL": if (pillHandler.create (elementType2, pos)) return true;
-            case "GHOST": if (ghostHandler.create(elementType2, pos)) return true;
             default: return false;
         }
     }
 
     public boolean createElement (String elementType1, Position pos) {
+        if (pos == null) pos = Movement.createRandomPosition();
         switch (elementType1) {
-            case "CORN": if (cornHandler.create(elementType1, pos)) return true;
+            case "CORN": if (cornHandler.create(pos)) return true;
+
+                // ich glaub elementtype kannst beim pacman entfernen
             case "PACMAN": if (pacManhandler.create(elementType1, pos)) return true;
+            case "GHOST": if (ghostHandler.create(pos)) return true;
             default: return false;
         }
     }

@@ -13,9 +13,18 @@ public class CornHandler extends ElementHandler {
     }
 
     @Override
+    public boolean create() {
+        return false;
+    }
+
+    @Override
+    public boolean create(Position pos) {
+        return false;
+    }
+
+    @Override
     public boolean create (String elementType, Position pos) {
 
-        // impement check if position is already used by another corn
         Corn corn = new Corn(pos);
         corns.add(corn);
         Messages.appear(corn);
@@ -28,7 +37,7 @@ public class CornHandler extends ElementHandler {
             if (corn.getPosition().getX() == pos.getX() && corn.getPosition().getY() == pos.getY()) {
                 getPoints(corn);
                 corns.remove(corn);
-                Messages.remove(corn);
+                Messages.pacmanEatenBy(corn);
                 return true;
             }
         }

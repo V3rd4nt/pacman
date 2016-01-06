@@ -24,6 +24,16 @@ public class PacmanHandler extends ElementHandler{
     }
 
     @Override
+    public boolean create(Position pos) {
+        return false;
+    }
+
+    @Override
+    public boolean create() {
+        return false;
+    }
+
+    @Override
     public boolean eat(Position pos) {
         return false;
     }
