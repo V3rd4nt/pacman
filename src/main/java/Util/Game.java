@@ -6,32 +6,38 @@ public class Game extends Thread {
 
     private Level level;
     private Position pos;
-    Element pacman;
 
     public Game () {
         level = new Level ();
 
-        level.createElement("GHOST", "RED", Movement.createRandomPosition());
-        level.createElement("GHOST", "BLUE", Movement.createRandomPosition());
-        level.createElement("GHOST", "GREEN", Movement.createRandomPosition());
-        level.createElement("GHOST", "YELLOW", Movement.createRandomPosition());
-        level.createElement("PACMAN",new Position (1,1));
+        level.createElement("GHOST", "RED", Position.getCenterPostition());
+        level.createElement("GHOST", "BLUE", Position.getCenterPostition());
+        level.createElement("GHOST", "GREEN", Position.getCenterPostition());
+        level.createElement("GHOST", "YELLOW", Position.getCenterPostition());
+        level.createElement("PACMAN", Position.getStartingPos());
         // TODO Create pills
     }
 
     @Override
     public void run() {
+
+        PacmanHandler pacmanHandler;
         while (true) {
             // TODO move each ghost around and display their positions
 
             // move pacman around
-            pacman.setPosition(Movement.createNextPositionFrom(pacman.getPosition()));
-
-            // displays position of pacman
-            Messages.position(pacman);
+            ElementHandler elem = level.getPacManhandler();
+            if (elem instanceof PacmanHandler){
+                pacmanHandler = (PacmanHandler) elem;
+                pacmanHandler.move();
+                for (ElementHandler elemHandler:level.getEatableElementsHandler()
+                     ) {
+                    pacmanHandler.eat(elemHandler);
+                }
+            }
 
             // TODO implement eat method in pacman-class and delete it in level-class
-            level.eat(pos);
+            //level.eat(pos);
 
             if (level.getLifes() == 0) break;
         }

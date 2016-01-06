@@ -1,5 +1,7 @@
 package Elements;
 
+import Util.Messages;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,24 +13,13 @@ public class CornHandler extends ElementHandler {
     }
 
     @Override
-    public boolean create() {
-        return false;
-    }
+    public boolean create (String elementType, Position pos) {
 
-    @Override
-    public boolean create (Position pos) {
-        for (Corn corn : corns) {
-            if (corn.getPosition().getX() == pos.getX() && corn.getPosition().getY() == pos.getY()) {
-                return false;
-            }
-        }
-        corns.add(new Corn(pos));
+        // impement check if position is already used by another corn
+        Corn corn = new Corn(pos);
+        corns.add(corn);
+        Messages.appear(corn);
         return true;
-    }
-
-    @Override
-    public boolean create(String elementType, Position pos) {
-        return false;
     }
 
     @Override
@@ -37,6 +28,7 @@ public class CornHandler extends ElementHandler {
             if (corn.getPosition().getX() == pos.getX() && corn.getPosition().getY() == pos.getY()) {
                 getPoints(corn);
                 corns.remove(corn);
+                Messages.remove(corn);
                 return true;
             }
         }

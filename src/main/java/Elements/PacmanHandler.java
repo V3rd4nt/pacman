@@ -1,6 +1,7 @@
 package Elements;
 
 import Util.Messages;
+import Util.Movement;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,12 +19,17 @@ public class PacmanHandler extends ElementHandler{
     @Override
     public boolean create(String type, Position pos) {
         this.pacManFig = new Pacman(pos);
+        Messages.appear(this.pacManFig);
         return true;
     }
 
     @Override
     public boolean eat(Position pos) {
         return false;
+    }
+
+    public boolean eat(ElementHandler elementHandler){
+        return elementHandler.eat(pacManFig.getPosition());
     }
 
     @Override
@@ -41,9 +47,10 @@ public class PacmanHandler extends ElementHandler{
         return list;
     }
 
-    public boolean move(Position pos){
-        this.pacManFig.setPosition(pos);
+    public boolean move(){
+        this.pacManFig.setPosition(Movement.createNextPositionFrom(this.pacManFig.getPosition()));
         Messages.move(this.pacManFig);
         return true;
     }
+
 }

@@ -2,10 +2,13 @@ package Elements;
 
 import Util.Messages;
 import Util.Movement;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Level {
 
     private static int score = 0, highscore = 0;
+
     private ElementHandler fruitHandler, ghostHandler, pillHandler, cornHandler, pacManhandler;
     private Lifes lifes;
 
@@ -19,31 +22,51 @@ public class Level {
     }
 
     public boolean createElement (String elementType1, String elementType2, Position pos ) {
+        boolean successful;
         if (pos == null) pos = Movement.createRandomPosition();
         switch (elementType1) {
+            case "FRUIT": if (fruitHandler.create (elementType2, pos)) return true;
             case "PILL": if (pillHandler.create (elementType2, pos)) return true;
+            case "GHOST": if (ghostHandler.create(elementType2, pos)) return true;
             default: return false;
         }
     }
 
     public boolean createElement (String elementType1, Position pos) {
-        if (pos == null) pos = Movement.createRandomPosition();
         switch (elementType1) {
-            case "CORN": if (cornHandler.create(pos)) return true;
-            case "PACMAN": if (pacManhandler.create(pos)) return true;
-            case "GHOST": if (ghostHandler.create(pos)) return true;
+            case "CORN": if (cornHandler.create(elementType1, pos)) return true;
+            case "PACMAN": if (pacManhandler.create(elementType1, pos)) return true;
             default: return false;
         }
     }
 
-    public ElementHandler getElementHandler (String elementType){
-        switch (elementType) {
-            case "PACMAN": return pacManhandler;
-            case "FRUIT": return fruitHandler;
-            case "PILL": return pillHandler;
-            case "CORN": return cornHandler;
-            default: return null;
-        }
+    public ElementHandler getFruitHandler() {
+        return fruitHandler;
+    }
+
+    public ElementHandler getGhostHandler() {
+        return ghostHandler;
+    }
+
+    public ElementHandler getPillHandler() {
+        return pillHandler;
+    }
+
+    public ElementHandler getCornHandler() {
+        return cornHandler;
+    }
+
+    public ElementHandler getPacManhandler() {
+        return pacManhandler;
+    }
+
+    public List<ElementHandler> getEatableElementsHandler(){
+        List<ElementHandler> listElemHandler = new ArrayList<ElementHandler>();
+        listElemHandler.add(this.cornHandler);
+        listElemHandler.add(this.pillHandler);
+        listElemHandler.add(this.ghostHandler);
+        listElemHandler.add(this.pillHandler);
+        return  listElemHandler;
     }
 
     public boolean eat (Position pos) {

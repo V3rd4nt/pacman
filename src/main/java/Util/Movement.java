@@ -14,8 +14,9 @@ public class Movement {
     }
 
     public static Position createRandomPosition () {
-        //TODO
-        return new Position (1,1);
+        int x = new Random().nextInt(Position.getWIDTH());
+        int y = new Random().nextInt(Position.getHEIGHT());
+        return new Position (x,y);
     }
 
     public static Position createNextPositionFrom (Position current) {
