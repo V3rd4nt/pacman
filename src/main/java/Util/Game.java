@@ -10,11 +10,12 @@ public class Game extends Thread {
 
     public Game () {
         level = new Level ();
-        pacman = new Pacman (new Position (1,1));
+
         level.createElement("GHOST", "RED", Movement.createRandomPosition());
         level.createElement("GHOST", "BLUE", Movement.createRandomPosition());
         level.createElement("GHOST", "GREEN", Movement.createRandomPosition());
         level.createElement("GHOST", "YELLOW", Movement.createRandomPosition());
+        level.createElement("PACMAN",new Position (1,1));
         // TODO Create pills
     }
 

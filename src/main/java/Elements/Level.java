@@ -6,7 +6,7 @@ import Util.Movement;
 public class Level {
 
     private static int score = 0, highscore = 0;
-    private ElementHandler fruitHandler, ghostHandler, pillHandler, cornHandler;
+    private ElementHandler fruitHandler, ghostHandler, pillHandler, cornHandler, pacManhandler;
     private Lifes lifes;
 
     public Level () {
@@ -14,6 +14,7 @@ public class Level {
         ghostHandler = new GhostHandler();
         pillHandler = new PillHandler(ghostHandler);
         cornHandler = new CornHandler();
+        pacManhandler = new PacmanHandler();
         lifes = new Lifes (3);
     }
 
@@ -31,7 +32,15 @@ public class Level {
     public boolean createElement (String elementType1, Position pos) {
         switch (elementType1) {
             case "CORN": if (cornHandler.create(elementType1, pos)) return true;
+            case "PACMAN": if (pacManhandler.create(elementType1, pos)) return true;
             default: return false;
+        }
+    }
+
+    public ElementHandler getElementHandler (String elementType){
+        switch (elementType) {
+            case "PACMAN": return pacManhandler;
+            default: return null;
         }
     }
 

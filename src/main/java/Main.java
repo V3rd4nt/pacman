@@ -22,7 +22,27 @@ public class Main {
         level.createElement("GHOST", "BLUE", pos (6,2));
         level.createElement("GHOST", "GREEN", pos (6,3));
         level.createElement("GHOST", "YELLOW", pos (6,4));
+        level.createElement("PACMAN",new Position (1,1));
+        ElementHandler elem = level.getElementHandler("PACMAN");
+        if (elem instanceof PacmanHandler){
+            PacmanHandler pacmanHandler = (PacmanHandler) elem;
+            Pacman pacman = ((Pacman) pacmanHandler.getElements().get(0));
+            if (pacman != null){
+                pacmanHandler.move(Movement.createNextPositionFrom(pacman.getPosition()));
+                pacmanHandler.move(Movement.createNextPositionFrom(pacman.getPosition()));
+                pacmanHandler.move(Movement.createNextPositionFrom(pacman.getPosition()));
+                pacmanHandler.move(Movement.createNextPositionFrom(pacman.getPosition()));
+                pacmanHandler.move(Movement.createNextPositionFrom(pacman.getPosition()));
+                pacmanHandler.move(Movement.createNextPositionFrom(pacman.getPosition()));
+                pacmanHandler.move(Movement.createNextPositionFrom(pacman.getPosition()));
+                pacmanHandler.move(Movement.createNextPositionFrom(pacman.getPosition()));
+                pacmanHandler.move(Movement.createNextPositionFrom(pacman.getPosition()));
+                pacmanHandler.move(Movement.createNextPositionFrom(pacman.getPosition()));
+                pacmanHandler.move(Movement.createNextPositionFrom(pacman.getPosition()));
+                pacmanHandler.move(Movement.createNextPositionFrom(pacman.getPosition()));
+            }
 
+        }
         // placement of power pill
         level.createElement("PILL", "POWER", pos (2,2));
 

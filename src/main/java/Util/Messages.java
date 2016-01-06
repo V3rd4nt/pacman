@@ -17,6 +17,8 @@ public class Messages {
 
     public static void pacmanEat (Element e) { System.out.println(e.toString() +  " eaten by Pacman"); }
 
+    public static void move (Element e) { System.out.println(e.toString() +  " moved to Position: " + e.getPosition().toString()); }
+
     public static void displayScore (int score) { System.out.println("Score: " + score); }
 
     public static void gameOver () { System.out.println("Game Over!"); }
