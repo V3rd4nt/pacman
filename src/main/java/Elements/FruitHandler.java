@@ -26,11 +26,13 @@ public class FruitHandler extends ElementHandler {
     public boolean create () {
         if (!fruits.isEmpty()) {
             if (fruits.peek() != null) {
-                Fruit fruit = fruits.peek();
-                Messages.appear(fruit);
-                timer = new EventTimer(fruit.getType().getDisplayTime(), this, null, fruit);
-                timer.start();
-                return true;
+                if(!timer.isInterrupted()) {
+                    Fruit fruit = fruits.peek();
+                    Messages.appear(fruit);
+                    timer = new EventTimer(fruit.getType().getDisplayTime(), this, null, fruit);
+                    timer.start();
+                    return true;
+                }
             } else return false;
         } else return false;
     }
