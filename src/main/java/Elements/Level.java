@@ -2,35 +2,43 @@ package Elements;
 
 import Util.Messages;
 import Util.Movement;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Level {
 
-    private static int score = 0, highscore = 0;
-    private ElementHandler fruitHandler, ghostHandler, pillHandler, cornHandler;
+    private static int score = 0;
+
+    private ElementHandler fruitHandler, ghostHandler, pillHandler, cornHandler, pacManhandler;
     private Lifes lifes;
 
-    public Level () {
+    public Level (Lifes lifes) {
         fruitHandler = new FruitHandler();
-        ghostHandler = new GhostHandler();
+        ghostHandler = new GhostHandler(lifes);
         pillHandler = new PillHandler(ghostHandler);
         cornHandler = new CornHandler();
-        lifes = new Lifes (3);
+        pacManhandler = new PacmanHandler();
+        this.lifes = lifes;
     }
 
     public boolean createElement (String elementType1, String elementType2, Position pos ) {
-        boolean successful;
         if (pos == null) pos = Movement.createRandomPosition();
         switch (elementType1) {
-            case "FRUIT": if (fruitHandler.create (elementType2, pos)) return true;
-            case "PILL": if (pillHandler.create (elementType2, pos)) return true;
-            case "GHOST": if (ghostHandler.create(elementType2, pos)) return true;
+            case "PILL": return pillHandler.create (elementType2, pos);
             default: return false;
         }
     }
 
     public boolean createElement (String elementType1, Position pos) {
+        if (pos == null) pos = Movement.createRandomPosition();
         switch (elementType1) {
-            case "CORN": if (cornHandler.create(elementType1, pos)) return true;
+            case "CORN": return cornHandler.create(pos);
+            case "GHOST": return ghostHandler.create(pos);
+            case "FRUIT": return fruitHandler.create();
+
+                // ich glaub elementtype kannst beim pacman entfernen
+            case "PACMAN": return pacManhandler.create(elementType1, pos);
+
             default: return false;
         }
     }
@@ -44,22 +52,51 @@ public class Level {
         else return pillHandler.eat(pos) || cornHandler.eat(pos) || ghostHandler.eat(pos);
     }
 
+    public void setAllCorns () {
+        // TODO Fill playing field with corns, except positions of pills and starting position of pacman
+    }
+
     public static void addScore (int points) {
         score += points;
 
         Messages.displayScore(score);
     }
 
+    public static int getScore () {
+        return score;
+    }
+
     public int getLifes () {
         return lifes.getAmount();
     }
 
-    protected void resetGame () {
-        highscore = score;
-        score = 0;
-        fruitHandler = new FruitHandler();
-        pillHandler = new PillHandler();
-        cornHandler = new CornHandler();
-        lifes = new Lifes (3);
+    public ElementHandler getFruitHandler() {
+        return fruitHandler;
+    }
+
+    public ElementHandler getGhostHandler() {
+        return ghostHandler;
+    }
+
+    public ElementHandler getPillHandler() {
+        return pillHandler;
+    }
+
+    public ElementHandler getCornHandler() {
+        return cornHandler;
+    }
+
+    public ElementHandler getPacManhandler() {
+        return pacManhandler;
+    }
+
+    // ?
+    public List<ElementHandler> getEatableElementsHandler(){
+        List<ElementHandler> listElemHandler = new ArrayList<ElementHandler>();
+        listElemHandler.add(this.cornHandler);
+        listElemHandler.add(this.pillHandler);
+        listElemHandler.add(this.ghostHandler);
+        listElemHandler.add(this.pillHandler);
+        return  listElemHandler;
     }
 }

@@ -2,38 +2,75 @@ package Util;
 
 import Elements.*;
 
+import java.util.List;
+
 public class Game extends Thread {
 
     private Level level;
-    private Position pos;
     Element pacman;
+    List<Ghost> ghosts;
 
-    public Game () {
-        level = new Level ();
-        pacman = new Pacman (new Position (1,1));
-        level.createElement("GHOST", "RED", Movement.createRandomPosition());
-        level.createElement("GHOST", "BLUE", Movement.createRandomPosition());
-        level.createElement("GHOST", "GREEN", Movement.createRandomPosition());
-        level.createElement("GHOST", "YELLOW", Movement.createRandomPosition());
-        // TODO Create pills
+    public static Position pos (int x, int y) {
+        return new Position (x, y);
     }
 
     @Override
     public void run() {
-        while (true) {
-            // TODO move each ghost around and display their positions
+        setup();
 
-            // move pacman around
-            pacman.setPosition(Movement.createNextPositionFrom(pacman.getPosition()));
+        // creates first fruit
+        level.createElement("FRUIT", null);
+        try {
+            while (true) {
+                Thread.sleep(10);
 
-            // displays position of pacman
-            Messages.position(pacman);
+                // moves ghosts around
+                ghosts = (List<Ghost>) level.getGhostHandler().getElements();
+                for (Ghost ghost : ghosts) {
+                    ghost.setPosition(Movement.createNextPositionFrom(ghost.getPosition()));
+                }
 
-            // TODO implement eat method in pacman-class and delete it in level-class
-            level.eat(pos);
+                // TODO set pacman back to startposition after he lost a life
 
-            if (level.getLifes() == 0) break;
-        }
+                // moves pacman around
+                pacman.setPosition(Movement.createNextPositionFrom(pacman.getPosition()));
+
+                // pacman eats
+                level.eat(pacman.getPosition());
+
+                // checks for game state and aborts if all lifes are gone
+                if (level.getLifes() == 0) break;
+            }
+        } catch (InterruptedException e) {
+        interrupt();
+    }
+        // stops running threads of fruitHandler timer
+        ((FruitHandler)level.getFruitHandler()).stopTimer();
+
         Messages.gameOver();
+        Messages.displayScore(level.getScore());
+    }
+
+    private void setup () {
+        // sets up a new level with 3 lifes
+        level = new Level (new Lifes(3));
+
+        // creates 4 ghosts
+        level.createElement("GHOST", Movement.createRandomPosition());
+        level.createElement("GHOST", Movement.createRandomPosition());
+        level.createElement("GHOST", Movement.createRandomPosition());
+        level.createElement("GHOST", Movement.createRandomPosition());
+
+        // creates pacman
+        pacman = new Pacman (Position.getStartingPos());
+
+        // creates 2 power pills
+        level.createElement("PILL", "POWER", pos (5, 20));
+        level.createElement("PILL", "POWER", pos (15, 20));
+
+        // fills playing field with corns
+
+        // TODO implement method
+        level.setAllCorns();
     }
 }

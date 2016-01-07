@@ -2,59 +2,66 @@ package Elements;
 
 import Util.Messages;
 import Util.EventTimer;
+import Util.Movement;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Stack;
 
 public class FruitHandler extends ElementHandler {
-    private List<Fruit> fruits;
+    private Stack<Fruit> fruits;
     private Thread timer;
 
     public FruitHandler () {
-        fruits = new ArrayList<>();
+
+        fruits = new Stack<>();
+        fruits.push(new Fruit(Fruit.Type.BANANA, Movement.createRandomPosition()));
+        fruits.push(new Fruit(Fruit.Type.PEACH, Movement.createRandomPosition()));
+        fruits.push(new Fruit(Fruit.Type.STRAWBERRY, Movement.createRandomPosition()));
+        fruits.push(new Fruit(Fruit.Type.APPLE, Movement.createRandomPosition()));
+        fruits.push(new Fruit(Fruit.Type.CHERRY, Movement.createRandomPosition()));
     }
 
     @Override
-    public boolean create (String elementType, Position pos) {
-        Fruit fruit;
-        switch(elementType) {
-            case "CHERRY":
-                fruit = new Fruit(Fruit.Type.CHERRY, pos);
-                break;
-            case "APPLE":
-                fruit = new Fruit(Fruit.Type.APPLE, pos);
-                break;
-            case "STRAWBERRY":
-                fruit = new Fruit(Fruit.Type.STRAWBERRY, pos);
-                break;
-            case "PEACH":
-                fruit = new Fruit(Fruit.Type.PEACH, pos);
-                break;
-            case "BANANA":
-                fruit = new Fruit(Fruit.Type.BANANA, pos);
-                break;
-            default: return false;
-        }
-        fruits.add(fruit);
+    public boolean create () {
+        if (!fruits.isEmpty()) {
+            if (fruits.peek() != null) {
+                Fruit fruit = fruits.peek();
+                Messages.appear(fruit);
+                timer = new EventTimer(fruit.getType().getDisplayTime(), this, null, fruit);
+                timer.start();
+                return true;
+            } else return false;
+        } else return false;
+    }
 
-        Messages.appear(fruit);
+    @Override
+    public boolean create(Position pos) {
+        return false;
+    }
 
-        timer = new EventTimer(fruit.getType().getDisplayTime(), this, null, fruit);
-        timer.start();
-        return true;
+    @Override
+    public boolean create(String elementType, Position pos) {
+        return false;
     }
 
     @Override
     public boolean eat (Position pos) {
-        for (Fruit fruit : fruits) {
-            if (fruit.getPosition().getX() == pos.getX() && fruit.getPosition().getY() == pos.getY()) {
+        if (!fruits.isEmpty()) {
+            if (fruits.peek().getPosition().getX() == pos.getX() && fruits.peek().getPosition().getY() == pos.getY()) {
                 timer.interrupt();
-                getPoints(fruit);
-                fruits.remove(fruit);
+                getPoints(fruits.peek());
+                Messages.pacmanEat(fruits.peek());
+                fruits.pop();
+                create();
                 return true;
             }
-        }
-        return false;
+            return false;
+        } else return false;
+    }
+
+    public void stopTimer () {
+        timer.interrupt();
     }
 
     @Override

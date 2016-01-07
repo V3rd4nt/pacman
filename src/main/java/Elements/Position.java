@@ -5,7 +5,7 @@ public class Position {
     private int x, y;
 
     // Level maximum size
-    private final int WIDTH = 30, HEIGHT = 20;
+    private static final int WIDTH = 30, HEIGHT = 20;
 
     public Position (int x, int y) {
         if (x <= 0) this.x = 0;
@@ -22,5 +22,50 @@ public class Position {
 
     public int getY () {
         return y;
+    }
+
+    public boolean setX(int x) {
+
+        if (x >= 0 && x <= WIDTH){
+            this.x = x;
+            return true;
+        }
+        return false;
+    }
+
+    public boolean setY(int y) {
+        if (y >= 0 && y <= HEIGHT){
+            this.y = y;
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public String toString() {
+        return "Position {" + "x = " + x + ", y = " + y + '}';
+    }
+
+    public static int getWIDTH() {
+        return WIDTH;
+    }
+
+    public static int getHEIGHT() {
+        return HEIGHT;
+    }
+
+    public static Position getCenterPostition(){
+
+        int x = WIDTH / 2;
+        int y = HEIGHT / 2;
+        return  new Position(x, y);
+    }
+
+
+    public static Position getStartingPos(){
+
+        int x = WIDTH / 2;
+        int y = (HEIGHT / 4) * 3;
+        return  new Position(x, y);
     }
 }
