@@ -6,7 +6,7 @@ public class Messages {
 
     public static void position (Element e) { System.out.println(e.toString() + " is at " + e.getPosition().toString()); }
 
-    public static void appear (Element e) { System.err.println(e.toString() +  " appeared"); }
+    public static void appear (Element e) { System.err.println(e.toString() +  " appeared " + e.getPosition().toString()); }
 
     public static void pacmanEatenBy (Element e) { System.err.println(e.toString() +  " ate Pacman"); }
 

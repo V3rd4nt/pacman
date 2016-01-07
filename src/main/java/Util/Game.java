@@ -26,13 +26,24 @@ public class Game extends Thread {
 
                 // moves ghosts around
                 ghosts = (List<Ghost>) level.getGhostHandler().getElements();
+                Position nextPos;
                 for (Ghost ghost : ghosts) {
-                    ghost.setPosition(Movement.createNextPositionFrom(ghost.getPosition()));
+                    do{
+                        nextPos = Movement.createNextPositionFrom(ghost.getPosition());
+                    }
+                    while (this.level.isWall(nextPos));
+
+                    ghost.setPosition(nextPos);
                 }
 
                 // moves pacman around
-                pacman.setPosition(Movement.createNextPositionFrom(pacman.getPosition()));
+                do{
+                    nextPos = Movement.createNextPositionFrom(pacman.getPosition());
+                }
+                while (this.level.isWall(nextPos));
 
+
+                pacman.setPosition(nextPos);
                 // pacman eats
                 level.eat(pacman.getPosition());
 
@@ -72,7 +83,6 @@ public class Game extends Thread {
 
         // fills playing field with corns
 
-        // TODO implement method
         level.setAllCorns();
     }
 }

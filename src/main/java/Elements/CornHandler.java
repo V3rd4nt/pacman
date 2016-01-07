@@ -19,7 +19,7 @@ public class CornHandler extends ElementHandler {
 
     @Override
     public boolean create(Position pos) {
-        return false;
+        return this.create("CORN", pos);
     }
 
     @Override

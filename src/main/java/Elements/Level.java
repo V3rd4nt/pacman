@@ -9,7 +9,13 @@ public class Level {
 
     private static int score = 0;
 
-    private ElementHandler fruitHandler, ghostHandler, pillHandler, cornHandler, pacManhandler;
+    private ElementHandler fruitHandler;
+    private ElementHandler ghostHandler;
+    private ElementHandler pillHandler;
+    private ElementHandler cornHandler;
+    private ElementHandler pacManhandler;
+
+    private ElementHandler wallHandler;
     private Lifes lifes;
     private Pacman pacman;
 
@@ -21,6 +27,8 @@ public class Level {
         pillHandler = new PillHandler(ghostHandler);
         cornHandler = new CornHandler();
         pacManhandler = new PacmanHandler();
+        wallHandler = new WallHandler();
+        this.setWalls();
     }
 
     public boolean createElement (String elementType1, String elementType2, Position pos ) {
@@ -37,6 +45,7 @@ public class Level {
             case "CORN": return cornHandler.create(pos);
             case "GHOST": return ghostHandler.create(pos);
             case "FRUIT": return fruitHandler.create();
+            case "WALL": return wallHandler.create(pos);
             default: return false;
         }
     }
@@ -51,7 +60,21 @@ public class Level {
     }
 
     public void setAllCorns () {
-        // TODO Fill playing field with corns, except positions of pills and starting position of pacman
+        int x, y;
+        x = 0;
+        Position posCorn;
+        while(x <= Position.getWIDTH()){
+            y = 0;
+            while (y <= Position.getHEIGHT()){
+                posCorn = new Position(x, y);
+                if (! (this.pacman.getPosition().compareTo(posCorn) == 0) && !isWall(posCorn)){
+                    boolean corn = this.createElement("CORN", posCorn);
+                }
+
+                y++;
+            }
+            x++;
+        }
     }
 
     public static void addScore (int points) {
@@ -77,6 +100,48 @@ public class Level {
 
     public ElementHandler getCornHandler() {
         return cornHandler;
+    }
+
+    public ElementHandler getWallHandler() {
+        return wallHandler;
+    }
+
+    private void setWalls(){
+        int x, y;
+        x = 0;
+        y = 0;
+        Position posWall;
+        while(x <= Position.getWIDTH()){
+            posWall = new Position(x, 0);
+            boolean wall = this.createElement("WALL", posWall);
+            posWall = new Position(x, Position.getHEIGHT());
+            wall = this.createElement("WALL", posWall);
+            x++;
+        }
+        while(y <= Position.getHEIGHT()){
+            posWall = new Position(0, y);
+            boolean wall = this.createElement("WALL", posWall);
+
+            posWall = new Position(Position.getWIDTH(), y);
+            wall = this.createElement("WALL", posWall);
+            y++;
+        }
+
+
+    }
+
+    public boolean isWall(Position pos){
+        boolean isWall = false;
+        for (Object wallItem : this.wallHandler.getElements()
+                ) {
+            if (wallItem instanceof Wall) {
+                isWall = pos.compareTo(((Wall) wallItem).getPosition()) == 0;
+                if (isWall) {
+                    return isWall;
+                }
+            }
+        }
+        return  isWall;
     }
 
     // TODO wird nicht gebraucht

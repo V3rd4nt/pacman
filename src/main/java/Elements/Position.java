@@ -1,6 +1,6 @@
 package Elements;
 
-public class Position {
+public class Position implements Comparable<Position> {
 
     private int x, y;
 
@@ -12,7 +12,7 @@ public class Position {
         if (x > 0 && x < WIDTH) this.x = x;
         if (x >= WIDTH) this.x = WIDTH;
         if (y <= 0) this.y = 0;
-        if (y > 0 && x < HEIGHT) this.y = y;
+        if (y > 0 && y < HEIGHT) this.y = y;
         if (y >= HEIGHT) this.y = HEIGHT;
     }
 
@@ -66,5 +66,20 @@ public class Position {
         int x = WIDTH / 2;
         int y = (HEIGHT / 4) * 3;
         return  new Position(x, y);
+    }
+
+    @Override
+    public int compareTo(Position o) {
+        int compareX = this.x - o.getX();
+        int compareY = this.y - o.getY();
+        if (compareX == 0 && compareY == 0){
+            return 0;
+        }
+        else if (compareX < 0){
+            return -1;
+        }
+        else {
+            return 1;
+        }
     }
 }
