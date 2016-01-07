@@ -11,14 +11,16 @@ public class Level {
 
     private ElementHandler fruitHandler, ghostHandler, pillHandler, cornHandler, pacManhandler;
     private Lifes lifes;
+    private Pacman pacman;
 
-    public Level (Lifes lifes) {
+    public Level (Pacman pacman) {
+        this.pacman = pacman;
+        this.lifes = new Lifes(3);
         fruitHandler = new FruitHandler();
-        ghostHandler = new GhostHandler(lifes);
+        ghostHandler = new GhostHandler(lifes, pacman);
         pillHandler = new PillHandler(ghostHandler);
         cornHandler = new CornHandler();
         pacManhandler = new PacmanHandler();
-        this.lifes = lifes;
     }
 
     public boolean createElement (String elementType1, String elementType2, Position pos ) {
@@ -35,10 +37,6 @@ public class Level {
             case "CORN": return cornHandler.create(pos);
             case "GHOST": return ghostHandler.create(pos);
             case "FRUIT": return fruitHandler.create();
-
-                // ich glaub elementtype kannst beim pacman entfernen
-            case "PACMAN": return pacManhandler.create(elementType1, pos);
-
             default: return false;
         }
     }
@@ -49,7 +47,7 @@ public class Level {
             cornHandler.eat(pos);
             return true;
         }
-        else return pillHandler.eat(pos) || cornHandler.eat(pos) || ghostHandler.eat(pos);
+        else return cornHandler.eat(pos) || ghostHandler.eat(pos);
     }
 
     public void setAllCorns () {
@@ -58,7 +56,6 @@ public class Level {
 
     public static void addScore (int points) {
         score += points;
-
         Messages.displayScore(score);
     }
 
@@ -78,19 +75,21 @@ public class Level {
         return ghostHandler;
     }
 
-    public ElementHandler getPillHandler() {
-        return pillHandler;
-    }
-
     public ElementHandler getCornHandler() {
         return cornHandler;
     }
 
+    // TODO wird nicht gebraucht
+    public ElementHandler getPillHandler() {
+        return pillHandler;
+    }
+
+    // TODO wird nicht gebraucht
     public ElementHandler getPacManhandler() {
         return pacManhandler;
     }
 
-    // ?
+    // TODO für was brauchst du diese methode?
     public List<ElementHandler> getEatableElementsHandler(){
         List<ElementHandler> listElemHandler = new ArrayList<ElementHandler>();
         listElemHandler.add(this.cornHandler);

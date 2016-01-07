@@ -14,6 +14,6 @@ public class Corn extends Element {
     }
 
     public String toString () {
-        return "Corn";
+        return "CORN";
     }
 }

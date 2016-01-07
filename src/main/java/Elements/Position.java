@@ -24,7 +24,7 @@ public class Position {
         return y;
     }
 
-    public boolean setX(int x) {
+    public boolean setX (int x) {
 
         if (x >= 0 && x <= WIDTH){
             this.x = x;
@@ -33,7 +33,7 @@ public class Position {
         return false;
     }
 
-    public boolean setY(int y) {
+    public boolean setY (int y) {
         if (y >= 0 && y <= HEIGHT){
             this.y = y;
             return true;
@@ -60,7 +60,6 @@ public class Position {
         int y = HEIGHT / 2;
         return  new Position(x, y);
     }
-
 
     public static Position getStartingPos(){
 

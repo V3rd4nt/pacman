@@ -38,6 +38,7 @@ public class Pill extends Element {
         return pillType;
     }
 
+    @Override
     public String toString () {
         return pillType.toString() + " Pill";
     }

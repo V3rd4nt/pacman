@@ -29,7 +29,8 @@ public class Ghost extends Element {
 
     public Type getType () { return  ghostType; }
 
+    @Override
     public String toString () {
-        return ghostType.toString() + " Ghost";
+        return ghostType.toString() + " GHOST";
     }
 }

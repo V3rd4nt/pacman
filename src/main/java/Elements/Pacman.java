@@ -12,6 +12,6 @@ public class Pacman extends Element {
 
     @Override
     public String toString() {
-        return "Pacman";
+        return "PACMAN";
     }
 }

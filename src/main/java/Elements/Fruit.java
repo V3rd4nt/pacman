@@ -34,6 +34,7 @@ public class Fruit extends Element {
 
     public Type getType () { return  fruitType; }
 
+    @Override
     public String toString () {
         return fruitType.toString();
     }

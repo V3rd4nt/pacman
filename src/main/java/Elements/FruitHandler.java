@@ -77,5 +77,4 @@ public class FruitHandler extends ElementHandler {
     private void getPoints (Fruit fruit) {
         Level.addScore(fruit.getType().getValue());
     }
-
 }

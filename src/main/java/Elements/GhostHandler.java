@@ -11,12 +11,14 @@ public class GhostHandler extends ElementHandler {
     private int ocurrence;
     private boolean vulnerable;
     private Lifes lifes;
+    private Pacman pacman;
 
-    public GhostHandler (Lifes lifes) {
+    public GhostHandler (Lifes lifes, Pacman pacman) {
         ghosts = new ArrayList<>();
         vulnerable = false;
         ocurrence = 0;
         this.lifes = lifes;
+        this.pacman = pacman;
     }
 
     @Override
@@ -67,6 +69,7 @@ public class GhostHandler extends ElementHandler {
                     Messages.pacmanEatenBy(ghost);
                     lifes.looseLife();
                     Messages.lifeLost(lifes.getAmount());
+                    pacman.setPosition(Position.getStartingPos());
                     return false;
                 }
             }

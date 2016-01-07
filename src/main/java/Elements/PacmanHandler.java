@@ -10,7 +10,7 @@ import java.util.List;
  * Created by Florian on 06/01/16.
  */
 
-// für was brauchst du diese klasse?
+// TODO für was brauchst du diese klasse? ist eigentlich sinnlos, da wir eh nur 1 pacman haben. kannt eigentlich köschen
 
 public class PacmanHandler extends ElementHandler{
 

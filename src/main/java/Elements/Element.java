@@ -11,7 +11,7 @@ public abstract class Element {
 
     public void setPosition (Position pos) {
         if (!(this instanceof Corn))
-        // Messages.position(this);
+        Messages.position(this);
         this.pos = pos;
     }
 
