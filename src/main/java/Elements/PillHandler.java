@@ -11,10 +11,6 @@ public class PillHandler extends ElementHandler {
     private Thread timer;
     private ElementHandler eh;
 
-    public PillHandler () {
-        pills = new ArrayList<>();
-    }
-
     public PillHandler (ElementHandler eh) {
         pills = new ArrayList<>();
         this.eh = eh;

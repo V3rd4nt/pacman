@@ -12,9 +12,9 @@ public class Messages {
 
     public static void pacmanEat (Element e) { System.err.println(e.toString() +  " eaten by Pacman"); }
 
-    public static void move (Element e) { System.err.println(e.toString() +  " moved to " + e.getPosition().toString()); }
-
     public static void displayScore (int score) { System.err.println("Score: " + score); }
+
+    public static void displayBonusScore (int nr, int score) { System.err.println("Bonus score for eating " + nr + " ghosts: " + score); }
 
     public static void lifeLost (int lifes) { System.err.println("Lost one life!\nCurrent lifes: " + lifes); }
 

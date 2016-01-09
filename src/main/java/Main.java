@@ -6,7 +6,5 @@ public class Main {
         // creates and starts a new game
         Game game = new Game();
         game.start();
-
-        // TODO delete Wall / PacmanHandler classes
     }
 }

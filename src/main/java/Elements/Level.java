@@ -2,33 +2,25 @@ package Elements;
 
 import Util.Messages;
 import Util.Movement;
-import java.util.ArrayList;
 import java.util.List;
 
 public class Level {
 
     private static int score = 0;
 
-    private ElementHandler fruitHandler;
-    private ElementHandler ghostHandler;
-    private ElementHandler pillHandler;
-    private ElementHandler cornHandler;
-    private ElementHandler pacManhandler;
-
-    private ElementHandler wallHandler;
+    private ElementHandler fruitHandler, ghostHandler, pillHandler, cornHandler, wallHandler;
     private Lifes lifes;
     private Pacman pacman;
 
-    public Level (Pacman pacman) {
+    public Level (Pacman pacman, Lifes lifes) {
         this.pacman = pacman;
-        this.lifes = new Lifes(3);
+        this.lifes = lifes;
         fruitHandler = new FruitHandler();
         ghostHandler = new GhostHandler(lifes, pacman);
         pillHandler = new PillHandler(ghostHandler);
         cornHandler = new CornHandler();
-        pacManhandler = new PacmanHandler();
         wallHandler = new WallHandler();
-        this.setWalls();
+        setWalls();
     }
 
     public boolean createElement (String elementType1, String elementType2, Position pos ) {
@@ -56,25 +48,17 @@ public class Level {
             cornHandler.eat(pos);
             return true;
         }
-        else return cornHandler.eat(pos) || ghostHandler.eat(pos);
+        else return cornHandler.eat(pos) || ghostHandler.eat(pos) || pillHandler.eat(pos);
     }
 
-    public void setAllCorns () {
-        int x, y;
-        x = 0;
-        Position posCorn;
-        while(x <= Position.getWIDTH()){
-            y = 0;
-            while (y <= Position.getHEIGHT()){
-                posCorn = new Position(x, y);
-                if (! (this.pacman.getPosition().compareTo(posCorn) == 0) && !isWall(posCorn)){
-                    boolean corn = this.createElement("CORN", posCorn);
-                }
-
-                y++;
+    public boolean setAllCorns () {
+        for (int x = 0; x <= Position.getWIDTH(); x++) {
+            for (int y = 0; y <= Position.getHEIGHT(); y++) {
+                if (!((x == pacman.getPosition().getX() && y == pacman.getPosition().getY()) || isWall (x, y)))
+                    createElement("CORN", new Position (x,y));
             }
-            x++;
         }
+        return true;
     }
 
     public static void addScore (int points) {
@@ -82,7 +66,32 @@ public class Level {
         Messages.displayScore(score);
     }
 
-    public static int getScore () {
+    private boolean setWalls () {
+        // wall 1 : Y-Direction
+        for (int y = 10; y <= 17; y++) {
+            createElement ("WALL", new Position(7, y));
+        }
+        // wall 2 : X-Direction
+        for (int x = 13; x <= 24; x++) {
+            createElement ("WALL", new Position(x, 11));
+        }
+        return true;
+    }
+
+    public boolean isWall (int x, int y) {
+        for (Wall wall : (List<Wall>)wallHandler.getElements()) {
+            if (wall.getPosition().getX() == x && wall.getPosition().getY() == y) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean isWall (Position pos) {
+        return isWall (pos.getX(), pos.getY());
+    }
+
+    public int getScore () {
         return score;
     }
 
@@ -100,67 +109,5 @@ public class Level {
 
     public ElementHandler getCornHandler() {
         return cornHandler;
-    }
-
-    public ElementHandler getWallHandler() {
-        return wallHandler;
-    }
-
-    private void setWalls(){
-        int x, y;
-        x = 0;
-        y = 0;
-        Position posWall;
-        while(x <= Position.getWIDTH()){
-            posWall = new Position(x, 0);
-            boolean wall = this.createElement("WALL", posWall);
-            posWall = new Position(x, Position.getHEIGHT());
-            wall = this.createElement("WALL", posWall);
-            x++;
-        }
-        while(y <= Position.getHEIGHT()){
-            posWall = new Position(0, y);
-            boolean wall = this.createElement("WALL", posWall);
-
-            posWall = new Position(Position.getWIDTH(), y);
-            wall = this.createElement("WALL", posWall);
-            y++;
-        }
-
-
-    }
-
-    public boolean isWall(Position pos){
-        boolean isWall = false;
-        for (Object wallItem : this.wallHandler.getElements()
-                ) {
-            if (wallItem instanceof Wall) {
-                isWall = pos.compareTo(((Wall) wallItem).getPosition()) == 0;
-                if (isWall) {
-                    return isWall;
-                }
-            }
-        }
-        return  isWall;
-    }
-
-    // TODO wird nicht gebraucht
-    public ElementHandler getPillHandler() {
-        return pillHandler;
-    }
-
-    // TODO wird nicht gebraucht
-    public ElementHandler getPacManhandler() {
-        return pacManhandler;
-    }
-
-    // TODO für was brauchst du diese methode?
-    public List<ElementHandler> getEatableElementsHandler(){
-        List<ElementHandler> listElemHandler = new ArrayList<ElementHandler>();
-        listElemHandler.add(this.cornHandler);
-        listElemHandler.add(this.pillHandler);
-        listElemHandler.add(this.ghostHandler);
-        listElemHandler.add(this.pillHandler);
-        return  listElemHandler;
     }
 }

@@ -1,27 +1,15 @@
 package Util;
 
 import Elements.Position;
-
 import java.util.Random;
 
 public class Movement {
 
-    // für was brauchst du das?
-    public enum Direction{
-        Left,
-        Right,
-        Up,
-        Down
-    }
-
     public static Position createRandomPosition () {
-        int x = new Random().nextInt(Position.getWIDTH());
-        int y = new Random().nextInt(Position.getHEIGHT());
-        return new Position (x,y);
+        return new Position (new Random().nextInt(Position.getWIDTH()), new Random().nextInt(Position.getHEIGHT()));
     }
 
-    public static Position createNextPositionFrom (Position current) {
-        Position pos = current;
+    public static Position createNextPositionFrom (Position pos) {
         boolean moved;
         Random rndNr = new Random();
         //0 = right, 1 = Up, 2 = left, 3 = bottom

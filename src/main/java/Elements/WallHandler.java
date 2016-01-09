@@ -1,30 +1,24 @@
 package Elements;
 
-import Util.Messages;
-
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by Florian on 07/01/16.
- */
 public class WallHandler extends ElementHandler {
     private List<Wall> walls;
 
-    public  WallHandler(){
-        this.walls = new ArrayList<Wall>();
+    public  WallHandler (){
+        walls = new ArrayList<>();
     }
+
     @Override
     public boolean create(String elementType, Position pos) {
-        Wall wall = new Wall(pos);
-        walls.add(wall);
-        Messages.appear(wall);
-        return true;
+        return false;
     }
 
     @Override
     public boolean create(Position pos) {
-        return this.create("WALL", pos);
+        walls.add(new Wall(pos));
+        return true;
     }
 
     @Override
@@ -44,6 +38,6 @@ public class WallHandler extends ElementHandler {
 
     @Override
     public List<?> getElements() {
-        return this.walls;
+        return walls;
     }
 }

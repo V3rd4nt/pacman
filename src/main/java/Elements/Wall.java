@@ -1,8 +1,5 @@
 package Elements;
 
-/**
- * Created by Florian on 04/01/16.
- */
 public class Wall extends Element {
 
     public Wall(Position pos) {
@@ -11,6 +8,6 @@ public class Wall extends Element {
 
     @Override
     public String toString() {
-        return "Wall";
+        return "WALL";
     }
 }

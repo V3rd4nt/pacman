@@ -1,6 +1,6 @@
 package Elements;
 
-public class Position implements Comparable<Position> {
+public class Position {
 
     private int x, y;
 
@@ -54,6 +54,7 @@ public class Position implements Comparable<Position> {
         return HEIGHT;
     }
 
+    // TODO löschen, da nicht gebraucht?
     public static Position getCenterPostition(){
 
         int x = WIDTH / 2;
@@ -66,20 +67,5 @@ public class Position implements Comparable<Position> {
         int x = WIDTH / 2;
         int y = (HEIGHT / 4) * 3;
         return  new Position(x, y);
-    }
-
-    @Override
-    public int compareTo(Position o) {
-        int compareX = this.x - o.getX();
-        int compareY = this.y - o.getY();
-        if (compareX == 0 && compareY == 0){
-            return 0;
-        }
-        else if (compareX < 0){
-            return -1;
-        }
-        else {
-            return 1;
-        }
     }
 }

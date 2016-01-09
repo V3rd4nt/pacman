@@ -23,10 +23,11 @@ public class EventTimer extends Thread {
                         eh.getElements().remove(e);
                         if (eh2 instanceof GhostHandler) {
                             ((GhostHandler) eh2).setVulnerable(true);
-                            Thread.sleep(time);
+
+                            // increased the time to give pacman a chance to actually eat a ghost
+                            Thread.sleep(time*150);
                             ((GhostHandler) eh2).setVulnerable(false);
                         }
-                        getBonus(eh2.getNumberOfElements());
                         break;
                     default:
                 }
@@ -35,25 +36,11 @@ public class EventTimer extends Thread {
                 while (!interrupted()) {
                     Thread.sleep(time);
                     e.setPosition(Movement.createRandomPosition());
-                    //Messages.appear(e);
+                    Messages.appear(e);
                 }
             }
         } catch (InterruptedException e) {
             interrupt();
-        }
-    }
-
-    protected void getBonus (int numberOfGhostsLeft) {
-        switch (numberOfGhostsLeft) {
-            case 1:
-                System.out.print("Bonus ");
-                Level.addScore(400);
-                break;
-            case 0:
-                System.out.print("Bonus ");
-                Level.addScore(800);
-                break;
-            default:
         }
     }
 }

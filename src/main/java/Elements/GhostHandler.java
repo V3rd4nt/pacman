@@ -77,6 +77,22 @@ public class GhostHandler extends ElementHandler {
         return false;
     }
 
+    public void getBonus () {
+        int score;
+        switch (ghosts.size()) {
+            case 1:
+                score = 400;
+                Messages.displayBonusScore(3, score);
+                break;
+            case 0:
+                score = 800;
+                Messages.displayBonusScore(4, score);
+                break;
+            default: return;
+        }
+        Level.addScore(score);
+    }
+
     @Override
     public int getNumberOfElements() {
         return ghosts.size();

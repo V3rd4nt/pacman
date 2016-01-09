@@ -1,7 +1,6 @@
 package Elements;
 
 import Util.Messages;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,7 +26,6 @@ public class CornHandler extends ElementHandler {
 
         Corn corn = new Corn(pos);
         corns.add(corn);
-        Messages.appear(corn);
         return true;
     }
 
@@ -37,7 +35,7 @@ public class CornHandler extends ElementHandler {
             if (corn.getPosition().getX() == pos.getX() && corn.getPosition().getY() == pos.getY()) {
                 getPoints(corn);
                 corns.remove(corn);
-                Messages.pacmanEatenBy(corn);
+                Messages.pacmanEat(corn);
                 return true;
             }
         }
