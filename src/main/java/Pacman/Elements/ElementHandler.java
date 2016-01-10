@@ -2,13 +2,12 @@ package Pacman.Elements;
 
 import java.util.List;
 
-public abstract class ElementHandler {
+public interface ElementHandler {
 
-    public abstract boolean create (String elementType, Position pos);
-    public abstract boolean create (Position pos);
-    public abstract boolean create ();
+    boolean create (String elementType, Position pos);
+    boolean create (Position pos);
+    boolean create ();
 
-    public abstract boolean eat (Position pos);
-    public abstract int getNumberOfElements ();
-    public abstract List<?> getElements ();
+    boolean eat (Position pos);
+    List<?> getElements ();
 }

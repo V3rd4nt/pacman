@@ -3,7 +3,7 @@ package Pacman.Elements;
 import java.util.ArrayList;
 import java.util.List;
 
-public class WallHandler extends ElementHandler {
+public class WallHandler implements ElementHandler {
     private List<Wall> walls;
 
     public  WallHandler (){
@@ -29,11 +29,6 @@ public class WallHandler extends ElementHandler {
     @Override
     public boolean eat(Position pos) {
         return false;
-    }
-
-    @Override
-    public int getNumberOfElements() {
-        return this.walls.size();
     }
 
     @Override

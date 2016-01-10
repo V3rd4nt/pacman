@@ -7,7 +7,7 @@ import Pacman.Util.Movement;
 import java.util.List;
 import java.util.Stack;
 
-public class FruitHandler extends ElementHandler {
+public class FruitHandler implements ElementHandler {
     private Stack<Fruit> fruits;
     private Thread timer;
 
@@ -61,11 +61,6 @@ public class FruitHandler extends ElementHandler {
 
     public void stopTimer () {
         timer.interrupt();
-    }
-
-    @Override
-    public int getNumberOfElements() {
-        return fruits.size();
     }
 
     @Override

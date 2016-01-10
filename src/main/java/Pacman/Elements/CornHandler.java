@@ -4,7 +4,7 @@ import Pacman.Util.Messages;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CornHandler extends ElementHandler {
+public class CornHandler implements ElementHandler {
     List<Corn> corns;
 
     public CornHandler() {
@@ -18,15 +18,14 @@ public class CornHandler extends ElementHandler {
 
     @Override
     public boolean create(Position pos) {
-        return this.create("CORN", pos);
+        Corn corn = new Corn(pos);
+        corns.add(corn);
+        return true;
     }
 
     @Override
     public boolean create (String elementType, Position pos) {
-
-        Corn corn = new Corn(pos);
-        corns.add(corn);
-        return true;
+        return false;
     }
 
     @Override
@@ -40,11 +39,6 @@ public class CornHandler extends ElementHandler {
             }
         }
         return false;
-    }
-
-    @Override
-    public int getNumberOfElements() {
-        return corns.size();
     }
 
     @Override

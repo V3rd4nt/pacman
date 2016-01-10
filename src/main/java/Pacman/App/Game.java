@@ -1,4 +1,4 @@
-package Pacman.Elements;
+package Pacman.App;
 
 import Pacman.Elements.*;
 import Pacman.Util.Messages;

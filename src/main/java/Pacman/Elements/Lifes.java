@@ -1,7 +1,5 @@
 package Pacman.Elements;
 
-import Pacman.Elements.Pacman;
-
 public class Lifes {
 
     private int amount;

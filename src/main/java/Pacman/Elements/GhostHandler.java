@@ -1,11 +1,10 @@
 package Pacman.Elements;
 
 import Pacman.Util.Messages;
-
 import java.util.ArrayList;
 import java.util.List;
 
-public class GhostHandler extends ElementHandler {
+public class GhostHandler implements ElementHandler {
     private List<Ghost> ghosts;
     private int ocurrence;
     private boolean vulnerable;
@@ -90,11 +89,6 @@ public class GhostHandler extends ElementHandler {
             default: return;
         }
         Level.addScore(score);
-    }
-
-    @Override
-    public int getNumberOfElements() {
-        return ghosts.size();
     }
 
     @Override

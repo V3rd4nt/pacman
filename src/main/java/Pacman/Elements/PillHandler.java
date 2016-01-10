@@ -6,7 +6,7 @@ import Pacman.Util.EventTimer;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PillHandler extends ElementHandler {
+public class PillHandler implements ElementHandler {
     private List<Pill> pills;
     private Thread timer;
     private ElementHandler eh;
@@ -60,11 +60,6 @@ public class PillHandler extends ElementHandler {
             }
         }
         return false;
-    }
-
-    @Override
-    public int getNumberOfElements() {
-        return pills.size();
     }
 
     @Override

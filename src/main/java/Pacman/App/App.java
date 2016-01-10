@@ -1,6 +1,6 @@
-import Pacman.Elements.Game;
+package Pacman.App;
 
-public class Main {
+public class App {
     public static void main (String[] args) {
 
         // creates and starts a new game

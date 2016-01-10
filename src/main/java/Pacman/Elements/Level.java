@@ -1,6 +1,5 @@
 package Pacman.Elements;
 
-import Pacman.Elements.Pacman;
 import Pacman.Util.Messages;
 import Pacman.Util.Movement;
 import java.util.List;

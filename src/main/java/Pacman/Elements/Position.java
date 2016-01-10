@@ -54,7 +54,7 @@ public class Position {
         return HEIGHT;
     }
 
-    // TODO löschen, da nicht gebraucht?
+    // not yet used
     public static Position getCenterPostition(){
 
         int x = WIDTH / 2;
