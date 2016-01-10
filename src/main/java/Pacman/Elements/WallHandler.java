@@ -1,4 +1,4 @@
-package Elements;
+package Pacman.Elements;
 
 import java.util.ArrayList;
 import java.util.List;

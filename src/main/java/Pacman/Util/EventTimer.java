@@ -1,5 +1,6 @@
-package Util;
-import Elements.*;
+package Pacman.Util;
+
+import Pacman.Elements.*;
 
 public class EventTimer extends Thread {
     private int time;

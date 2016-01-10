@@ -1,4 +1,4 @@
-package Elements;
+package Pacman.Elements;
 
 public class Fruit extends Element {
 

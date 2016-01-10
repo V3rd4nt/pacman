@@ -1,7 +1,8 @@
-package Elements;
+package Pacman.Elements;
 
-import Util.Messages;
-import Util.Movement;
+import Pacman.Elements.Pacman;
+import Pacman.Util.Messages;
+import Pacman.Util.Movement;
 import java.util.List;
 
 public class Level {

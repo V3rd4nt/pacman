@@ -1,7 +1,7 @@
-package Elements;
+package Pacman.Elements;
 
-import Util.Messages;
-import Util.EventTimer;
+import Pacman.Util.Messages;
+import Pacman.Util.EventTimer;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,6 +1,8 @@
-package Elements;
+package Pacman.Elements;
 
-import Util.Messages;
+import Pacman.Elements.Pacman;
+
+import Pacman.Util.Messages;
 
 public abstract class Element {
     Position pos;

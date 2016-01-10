@@ -1,7 +1,6 @@
-package Elements;
+package Pacman.Elements;
 
-import Util.Messages;
-import Util.Movement;
+import Pacman.Util.Messages;
 
 import java.util.ArrayList;
 import java.util.List;

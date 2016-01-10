@@ -1,10 +1,9 @@
-package Elements;
+package Pacman.Elements;
 
-import Util.Messages;
-import Util.EventTimer;
-import Util.Movement;
+import Pacman.Util.Messages;
+import Pacman.Util.EventTimer;
+import Pacman.Util.Movement;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Stack;
 

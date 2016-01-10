@@ -1,6 +1,6 @@
-package Util;
+package Pacman.Util;
 
-import Elements.*;
+import Pacman.Elements.Element;
 
 public class Messages {
 

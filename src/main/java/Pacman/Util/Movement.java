@@ -1,6 +1,6 @@
-package Util;
+package Pacman.Util;
 
-import Elements.Position;
+import Pacman.Elements.Position;
 import java.util.Random;
 
 public class Movement {

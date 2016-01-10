@@ -1,6 +1,8 @@
-package Util;
+package Pacman.Elements;
 
-import Elements.*;
+import Pacman.Elements.*;
+import Pacman.Util.Messages;
+import Pacman.Util.Movement;
 
 import java.util.List;
 
@@ -61,7 +63,7 @@ public class Game extends Thread {
         pacman = new Pacman (Position.getStartingPos());
 
         // sets up a new level with 3 lifes
-        level = new Level (pacman, new Lifes (3));
+        level = new Level (pacman, new Lifes(3));
 
         // fills playing field with corns
         level.setAllCorns();
