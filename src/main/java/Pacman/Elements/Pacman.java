@@ -1,12 +1,12 @@
 package Pacman.Elements;
 
 /**
- * Pacman
+ * Pacman Class
  */
 public class Pacman extends Element {
 
     /**
-     * Creates a new pacman on a specified position on the playing field
+     * Creates a new Pacman on a specified Position on the playing field
      * @param pos specified position
      */
     public Pacman(Position pos) {
@@ -14,7 +14,7 @@ public class Pacman extends Element {
     }
 
     /**
-     * Returns the representation of the pacman class
+     * Returns the representation of the Pacman class as String
      * @return classname
      */
     @Override

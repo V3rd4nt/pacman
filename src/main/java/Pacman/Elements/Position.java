@@ -1,7 +1,7 @@
 package Pacman.Elements;
 
 /**
- * Position for Elements
+ * Position Class
  */
 public class Position {
 
@@ -11,7 +11,7 @@ public class Position {
     private static final int WIDTH = 30, HEIGHT = 20;
 
     /**
-     * Creates a new position according to the specified coordinates
+     * Creates a new Position according to the specified coordinates
      * @param x x-coordinate
      * @param y y-coordinate
      */
@@ -25,7 +25,7 @@ public class Position {
     }
 
     /**
-     * Returns the x-coordinate of the position
+     * Returns the x-coordinate of the Position
      * @return x-coordinate
      */
     public int getX () {
@@ -33,7 +33,7 @@ public class Position {
     }
 
     /**
-     * Returns the y-coordinate of the position
+     * Returns the y-coordinate of the Position
      * @return y-coordinate
      */
     public int getY () {
@@ -41,7 +41,7 @@ public class Position {
     }
 
     /**
-     * Sezs the x-coordinate of the position
+     * Sets the x-coordinate of the Position
      * @param x x-coordinate
      * @return true if successfully set, false otherwise
      */
@@ -55,7 +55,7 @@ public class Position {
     }
 
     /**
-     * Sezs the y-coordinate of the position
+     * Sets the y-coordinate of the Position
      * @param y y-coordinate
      * @return true if successfully set, false otherwise
      */
@@ -68,7 +68,7 @@ public class Position {
     }
 
     /**
-     * Returns the coordinates of the position as String
+     * Returns the coordinates of the Position as String
      * @return position coordinates
      */
     @Override
@@ -77,23 +77,23 @@ public class Position {
     }
 
     /**
-     * Returns max. width of the playing field
-     * @return max width
+     * Returns maximum width of the playing field
+     * @return maximum width
      */
     public static int getWIDTH() {
         return WIDTH;
     }
 
     /**
-     * Returns max. height of the playing field
-     * @return max height
+     * Returns maximum height of the playing field
+     * @return maximum height
      */
     public static int getHEIGHT() {
         return HEIGHT;
     }
 
     /**
-     * Creates new position in the center of the playing field
+     * Creates new Position in the center of the playing field
      * @return new center position
      */
     public static Position getCenterPostition(){
@@ -104,7 +104,7 @@ public class Position {
     }
 
     /**
-     * Creates new starting position of pacman
+     * Creates new starting Position of pacman
      * @return new starting position
      */
     public static Position getStartingPos(){

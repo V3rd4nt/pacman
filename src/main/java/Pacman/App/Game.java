@@ -7,7 +7,7 @@ import Pacman.Util.Movement;
 import java.util.List;
 
 /**
- * Game
+ *  Game Class
  */
 public class Game extends Thread {
 
@@ -15,11 +15,19 @@ public class Game extends Thread {
     Pacman pacman;
     List<Ghost> ghosts;
 
-
+    /**
+     * Creates a new Position with the given Coordinates
+     * @param x x-coordinate
+     * @param y y-coordinate
+     * @return new Position
+     */
     public static Position pos (int x, int y) {
         return new Position (x, y);
     }
 
+    /**
+     * Starts the Game Thread
+     */
     @Override
     public void run() {
         setup();
@@ -61,6 +69,9 @@ public class Game extends Thread {
         Messages.displayScore(level.getScore());
     }
 
+    /**
+     * Creates and sets all the needed game elements
+     */
     private void setup () {
 
         // creates pacman

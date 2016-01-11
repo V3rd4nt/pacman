@@ -1,12 +1,12 @@
 package Pacman.Elements;
 
 /**
- * Ghost
+ * Ghost Class
  */
 public class Ghost extends Element {
 
     /**
-     * Available ghost types
+     * Available Ghost types
      */
     public enum Type {
         RED,
@@ -21,7 +21,7 @@ public class Ghost extends Element {
         }
 
         /**
-         * Returns the points for an eaten ghost
+         * Returns the points for an eaten Ghost
          * @return amount of points
          */
         public int getValue() {
@@ -32,7 +32,7 @@ public class Ghost extends Element {
     private Type ghostType;
 
     /**
-     * Creates a new ghost on specified position on the playing field
+     * Creates a new Ghost on specified Position on the playing field
      * @param ghostType an enum ghost type
      * @param pos       specified position
      */
@@ -42,13 +42,13 @@ public class Ghost extends Element {
     }
 
     /**
-     * Returns the enum type of a ghost
+     * Returns the enum type of a Ghost
      * @return ghost enum type
      */
     public Type getType () { return  ghostType; }
 
     /**
-     * Returns the name of an enum ghost type
+     * Returns the name of an enum Ghost type as String
      * @return ghost enum name plus class name
      */
     @Override

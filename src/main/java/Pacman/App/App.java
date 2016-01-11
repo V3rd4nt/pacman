@@ -1,5 +1,8 @@
 package Pacman.App;
 
+/**
+ *  App Class - contains Main method
+ */
 public class App {
     public static void main (String[] args) {
 

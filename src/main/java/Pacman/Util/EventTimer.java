@@ -2,11 +2,21 @@ package Pacman.Util;
 
 import Pacman.Elements.*;
 
+/**
+ * EventTimer Class
+ */
 public class EventTimer extends Thread {
     private int time;
     private ElementHandler eh, eh2;
     private Element e;
 
+    /**
+     * Creates a new EventTimer
+     * @param time thread sleep time
+     * @param eh
+     * @param eh2
+     * @param e
+     */
     public EventTimer(int time, ElementHandler eh, ElementHandler eh2, Element e) {
         this.time = time*10;
         this.eh = eh;
@@ -14,6 +24,15 @@ public class EventTimer extends Thread {
         this.e = e;
     }
 
+    /**
+     * Starts the EventTimer Thread
+     *
+     * Handles effects of the pills according to their effect times
+     *
+     * Changes Fruit positions after expired display times
+     *
+     * Changes Fruits after they were eaten by Pacman
+     */
     @Override
     public void run() {
         try {

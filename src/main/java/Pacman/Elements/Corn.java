@@ -1,14 +1,14 @@
 package Pacman.Elements;
 
 /**
- * Corn
+ * Corn Class
  */
 public class Corn extends Element {
 
     private int val;
 
     /**
-     * Creates a new corn on a specified position on the playing field
+     * Creates a new Corn on a specified Position on the playing field
      * @param pos specified position
      */
     public Corn (Position pos) {
@@ -17,7 +17,7 @@ public class Corn extends Element {
     }
 
     /**
-     * Returns the points for an eaten corn
+     * Returns the points for an eaten Corn
      * @return amount of points
      */
     public int getValue () {
@@ -25,7 +25,7 @@ public class Corn extends Element {
     }
 
     /**
-     * Retuns the representation of the corn class
+     * Returns the representation of the Corn class as String
      * @return classname
      */
     public String toString () {

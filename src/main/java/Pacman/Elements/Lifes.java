@@ -1,14 +1,14 @@
 package Pacman.Elements;
 
 /**
- * Lifes
+ * Lifes Class
  */
 public class Lifes {
 
     private int amount;
 
     /**
-     * Creates a life object and sets the amount of lifes
+     * Creates a Lifes object and sets the amount of lifes
      * @param amount lifes
      */
     public Lifes(int amount) {

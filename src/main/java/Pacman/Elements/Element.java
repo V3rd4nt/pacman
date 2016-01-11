@@ -3,13 +3,13 @@ package Pacman.Elements;
 import Pacman.Util.Messages;
 
 /**
- * Abstract Element
+ * Abstract Element Class
  */
 public abstract class Element {
     Position pos;
 
     /**
-     * Creates a new element on a specified position on the playing field
+     * Creates a new Element on a specified Position on the playing field
      * @param pos specified position
      */
     public Element (Position pos) {
@@ -17,7 +17,7 @@ public abstract class Element {
     }
 
     /**
-     * Sets the position of the element on the playing field
+     * Sets the Position of the Element on the playing field
      * @param pos specified position
      */
     public void setPosition (Position pos) {
@@ -27,7 +27,7 @@ public abstract class Element {
     }
 
     /**
-     * Returns the position of the element
+     * Returns the Position of the Element
      * @return position of the element
      */
     public Position getPosition () {
@@ -35,7 +35,7 @@ public abstract class Element {
     }
 
     /**
-     * Returns the representation of the elemnt class
+     * Returns the representation of the Element class as String
      * @return classname
      */
     public abstract String toString ();

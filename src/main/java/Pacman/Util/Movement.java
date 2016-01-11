@@ -3,12 +3,24 @@ package Pacman.Util;
 import Pacman.Elements.Position;
 import java.util.Random;
 
+/**
+ * Movement Class
+ */
 public class Movement {
 
+    /**
+     * Creates a new random Position
+     * @return new random Position
+     */
     public static Position createRandomPosition () {
         return new Position (new Random().nextInt(Position.getWIDTH()), new Random().nextInt(Position.getHEIGHT()));
     }
 
+    /**
+     * Creates a new random Position according to a specified Position
+     * @param pos specified position
+     * @return new subsequent position
+     */
     public static Position createNextPositionFrom (Position pos) {
         boolean moved;
         Random rndNr = new Random();

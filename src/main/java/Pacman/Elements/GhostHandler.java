@@ -4,6 +4,9 @@ import Pacman.Util.Messages;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * GhostHandler Class
+ */
 public class GhostHandler implements ElementHandler {
     private List<Ghost> ghosts;
     private int ocurrence;
@@ -11,6 +14,9 @@ public class GhostHandler implements ElementHandler {
     private Lifes lifes;
     private Pacman pacman;
 
+    /**
+     * Creates a new GhostHandler
+     */
     public GhostHandler (Lifes lifes, Pacman pacman) {
         ghosts = new ArrayList<>();
         vulnerable = false;
@@ -19,11 +25,20 @@ public class GhostHandler implements ElementHandler {
         this.pacman = pacman;
     }
 
+    /**
+     * Not implemented: use create (Position pos)
+     */
     @Override
     public boolean create() {
         return false;
     }
 
+    /**
+     * Creates a new Ghost on the specified Position
+     * (Not allowed to create more than 4 ghosts)
+     * @param pos specified position
+     * @return true if successfully created, false if otherwise
+     */
     @Override
     public boolean create (Position pos) {
 
@@ -49,11 +64,21 @@ public class GhostHandler implements ElementHandler {
         return true;
     }
 
+    /**
+     * Not implemented: use create (Position pos)
+     */
     @Override
     public boolean create(String elementType, Position pos) {
         return false;
     }
 
+    /**
+     * Tries to remove a Ghost on the specified position
+     * (Removing of ghosts only possible in vulnerable state (Power Pill effect). If ghosts are
+     * not vulnerable Pacman looses one life and gets set back to the it's starting position)
+     * @param pos specified position
+     * @return true if Ghost was removed, false if otherwise
+     */
     @Override
     public boolean eat (Position pos) {
         for (Ghost ghost : ghosts) {
@@ -75,6 +100,9 @@ public class GhostHandler implements ElementHandler {
         return false;
     }
 
+    /**
+     * Adds bonus to the score if at least 3 ghosts were eaten during the Power Pill effect
+     */
     public void getBonus () {
         int score;
         switch (ghosts.size()) {
@@ -91,11 +119,19 @@ public class GhostHandler implements ElementHandler {
         Level.addScore(score);
     }
 
+    /**
+     * Returns all available Ghosts
+     * @return list of Ghosts
+     */
     @Override
     public List<?> getElements() {
         return ghosts;
     }
 
+    /**
+     * Sets vulnerable state to specified value
+     * @param value specified value
+     */
     public void setVulnerable (boolean value) {
         vulnerable = value;
     }

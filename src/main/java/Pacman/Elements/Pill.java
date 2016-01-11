@@ -1,12 +1,12 @@
 package Pacman.Elements;
 
 /**
- * Pill
+ * Pill Class
  */
 public class Pill extends Element {
 
     /**
-     * Available pill types
+     * Available Pill types
      */
     public enum Type {
         POWER(10, 2);
@@ -19,7 +19,7 @@ public class Pill extends Element {
         }
 
         /**
-         * Returns the effect time of the pill
+         * Returns the effect time of the Pill
          * @return effect time
          */
         public int getEffectTime() {
@@ -27,16 +27,16 @@ public class Pill extends Element {
         }
 
         /**
-         * Returns the number of allowed ocurrences of the pill
-         * @return maximum allowed occurences of a pill
+         * Returns the number of allowed ocurrences of the Pill
+         * @return maximum allowed occurences
          */
         public int getMaxOcurrence() {
             return maxOcurrence;
         }
 
         /**
-         * Sets the number of allowed ocurrences of the pill
-         * @param maxOcurrence maximum allowed occurences of a pill
+         * Sets the number of allowed ocurrences of the Pill
+         * @param maxOcurrence maximum allowed occurences
          */
         public void setMaxOcurrence(int maxOcurrence) {
             this.maxOcurrence = maxOcurrence;
@@ -47,7 +47,7 @@ public class Pill extends Element {
     private Type pillType;
 
     /**
-     * Creates a new pill on specified position on the playing field
+     * Creates a new Pill on specified Position on the playing field
      * @param pillType  an enum pill type
      * @param pos       specified position
      */
@@ -58,7 +58,7 @@ public class Pill extends Element {
     }
 
     /**
-     * Returns the enum type of a pill
+     * Returns the enum type of a Pill
      * @return pill enum type
      */
     public Type getType() {
@@ -66,7 +66,7 @@ public class Pill extends Element {
     }
 
     /**
-     * Returns the name of an enum pill type
+     * Returns the name of an enum Pill type as String
      * @return pill enum name plus class name
      */
     @Override

@@ -1,12 +1,12 @@
 package Pacman.Elements;
 
 /**
- * Wall
+ * Wall Class
  */
 public class Wall extends Element {
 
     /**
-     * Creates a new wall on a specified position on the playing field
+     * Creates a new Wall on a specified Position on the playing field
      * @param pos specified position
      */
     public Wall(Position pos) {
@@ -14,7 +14,7 @@ public class Wall extends Element {
     }
 
     /**
-     * Returns the representation of the wall class
+     * Returns the representation of the Wall class as String
      * @return classname
      */
     @Override

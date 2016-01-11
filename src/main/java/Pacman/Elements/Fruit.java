@@ -1,12 +1,12 @@
 package Pacman.Elements;
 
 /**
- * Fruit
+ * Fruit Class
  */
 public class Fruit extends Element {
 
     /**
-     * Available fruit types
+     * Available Fruit types
      */
     public enum Type {
         CHERRY(200, 5),
@@ -22,7 +22,7 @@ public class Fruit extends Element {
         }
 
         /**
-         * Returns the points for an eaten fruit
+         * Returns the points for an eaten Fruit
          * @return amount of points
          */
         public int getValue() {
@@ -30,7 +30,7 @@ public class Fruit extends Element {
         }
 
         /**
-         * Returns the display time of the fruit
+         * Returns the display time of the Fruit
          * @return display time
          */
         public int getDisplayTime() {
@@ -41,8 +41,8 @@ public class Fruit extends Element {
     protected Type fruitType;
 
     /**
-     * Creates a new fruit on specified position on the playing field
-     * @param fruitType an enum fruit type
+     * Creates a new Fruit on specified Position on the playing field
+     * @param fruitType enum fruit type
      * @param pos       specified position
      */
     public Fruit (Type fruitType, Position pos) {
@@ -52,13 +52,13 @@ public class Fruit extends Element {
     }
 
     /**
-     * Returns the enum type of a fruit
+     * Returns the enum type of a Fruit
      * @return fruit enum type
      */
     public Type getType () { return  fruitType; }
 
     /**
-     * Returns the name of an enum fruit type
+     * Returns the name of an enum Fruit type as String
      * @return fruit enum name
      */
     @Override
