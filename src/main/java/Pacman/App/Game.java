@@ -6,11 +6,15 @@ import Pacman.Util.Movement;
 
 import java.util.List;
 
+/**
+ * Game
+ */
 public class Game extends Thread {
 
     private Level level;
     Pacman pacman;
     List<Ghost> ghosts;
+
 
     public static Position pos (int x, int y) {
         return new Position (x, y);
