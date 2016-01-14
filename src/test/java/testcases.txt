@@ -17,13 +17,13 @@ Bonuspunkte Test bei gefressenen Geistern:
 
 Pacman soll keine Wände essen, und auch nicht durch sie hindurchfahren.
 
-Anlegen ungültiger Elemente dürfen keine Exceptions werfen
+[OK] Anlegen ungültiger Elemente dürfen keine Exceptions werfen
 
 Pacman soll bei einem Zusammenstoß mit einem Geist, der nicht verwundbar ist
 ein Leben verlieren.
 
-Es dürfen keine Positionen außerhalb des Spielfeldes erzeugt werden:
+[OK] Es dürfen keine Positionen außerhalb des Spielfeldes erzeugt werden:
 
-Es dürfen nicht mehr Pillen als erlaubt angelegt werden:
+[OK] Es dürfen nicht mehr Pillen als erlaubt angelegt werden:
 
 
