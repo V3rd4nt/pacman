@@ -5,17 +5,19 @@ package Pacman.Elements;
  */
 public class Pill extends Element {
 
+    // TODO Number added
     /**
      * Available Pill types
      */
     public enum Type {
-        POWER(10, 2);
+        POWER(10, 2, 0);
 
-        private int effectTime, maxOcurrence;
+        private int effectTime, maxOcurrence, number;
 
-        Type(int effectTime, int maxOcurrence) {
+        Type(int effectTime, int maxOcurrence, int number) {
             this.effectTime = effectTime;
             this.maxOcurrence = maxOcurrence;
+            this.number = number;
         }
 
         /**
@@ -34,12 +36,9 @@ public class Pill extends Element {
             return maxOcurrence;
         }
 
-        /**
-         * Sets the number of allowed ocurrences of the Pill
-         * @param maxOcurrence maximum allowed occurences
-         */
-        public void setMaxOcurrence(int maxOcurrence) {
-            this.maxOcurrence = maxOcurrence;
+        // TODO new
+        public int getNumber () {
+            return number;
         }
     }
 

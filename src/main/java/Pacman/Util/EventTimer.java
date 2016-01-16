@@ -44,8 +44,9 @@ public class EventTimer extends Thread {
                         if (eh2 instanceof GhostHandler) {
                             ((GhostHandler) eh2).setVulnerable(true);
 
+                            // TODO Increased for testing
                             // increased the time to give pacman a chance to actually eat a ghost
-                            Thread.sleep(time*100);
+                            Thread.sleep(time*100*5);
                             ((GhostHandler) eh2).setVulnerable(false);
                         }
                         break;

@@ -13,6 +13,7 @@ public class PillHandler implements ElementHandler {
     private List<Pill> pills;
     private Thread timer;
     private ElementHandler eh;
+    private int[] maxOcurrences;
 
     /**
      * Creates a new PillHandler
@@ -20,6 +21,7 @@ public class PillHandler implements ElementHandler {
     public PillHandler (ElementHandler eh) {
         pills = new ArrayList<>();
         this.eh = eh;
+        setOcurrences();
     }
 
     /**
@@ -38,6 +40,7 @@ public class PillHandler implements ElementHandler {
         return false;
     }
 
+    // TODO Changed
     /**
      * Creates a new Pill on the specified Position
      * (Not allowed to create more Pills than defined maximum occurrence)
@@ -48,20 +51,20 @@ public class PillHandler implements ElementHandler {
     @Override
     public boolean create (String elementType, Position pos) {
         Pill pill;
+        int maxOcurrence, number;
 
         switch(elementType) {
             case "POWER":
                 pill = new Pill(Pill.Type.POWER, pos);
+                number = pill.getType().getNumber();
+                maxOcurrence = maxOcurrences[number];
                 break;
             default: return false;
         }
-        int maxOcurrence = pill.getType().getMaxOcurrence();
         if (maxOcurrence > 0) {
             pills.add(pill);
-            pill.getType().setMaxOcurrence(maxOcurrence-1);
-
+            maxOcurrences[number] = maxOcurrence-1;
             Messages.appear(pill);
-
             return true;
         }
         return false;
@@ -94,5 +97,18 @@ public class PillHandler implements ElementHandler {
     @Override
     public List<?> getElements() {
         return pills;
+    }
+
+    // TODO new
+    private void setOcurrences () {
+        int numberOfDifferentPills = 0;
+        for (Pill.Type t : Pill.Type.values()) {
+            numberOfDifferentPills++;
+        }
+        maxOcurrences = new int[numberOfDifferentPills];
+        int i = 0;
+        for (Pill.Type t : Pill.Type.values()) {
+            maxOcurrences[i] = t.getMaxOcurrence();
+        }
     }
 }

@@ -9,7 +9,6 @@ import java.util.List;
  */
 public class GhostHandler implements ElementHandler {
     private List<Ghost> ghosts;
-    private int ocurrence;
     private boolean vulnerable;
     private Lifes lifes;
     private Pacman pacman;
@@ -20,7 +19,6 @@ public class GhostHandler implements ElementHandler {
     public GhostHandler (Lifes lifes, Pacman pacman) {
         ghosts = new ArrayList<>();
         vulnerable = false;
-        ocurrence = 0;
         this.lifes = lifes;
         this.pacman = pacman;
     }
@@ -33,6 +31,7 @@ public class GhostHandler implements ElementHandler {
         return false;
     }
 
+    // TODO Changed
     /**
      * Creates a new Ghost on the specified Position
      * (Not allowed to create more than 4 ghosts)
@@ -43,7 +42,7 @@ public class GhostHandler implements ElementHandler {
     public boolean create (Position pos) {
 
         Ghost ghost;
-        switch(ocurrence) {
+        switch(ghosts.size()) {
             case 0:
                 ghost = new Ghost (Ghost.Type.RED, pos);
                 break;
@@ -58,7 +57,6 @@ public class GhostHandler implements ElementHandler {
                 break;
             default: return false;
         }
-        ocurrence += 1;
         ghosts.add(ghost);
         Messages.appear(ghost);
         return true;
@@ -134,6 +132,10 @@ public class GhostHandler implements ElementHandler {
      */
     public void setVulnerable (boolean value) {
         vulnerable = value;
+    }
+
+    public boolean getVulerableState () {
+        return vulnerable;
     }
 
     private void getPoints (Ghost ghost) {

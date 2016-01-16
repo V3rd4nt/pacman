@@ -63,6 +63,7 @@ public class Level {
         }
     }
 
+    // TODO Changed
     /**
      * Tries to remove an Element on the specified position
      * @param pos specified position
@@ -74,7 +75,10 @@ public class Level {
             cornHandler.eat(pos);
             return true;
         }
-        else return cornHandler.eat(pos) || ghostHandler.eat(pos) || pillHandler.eat(pos);
+        if (cornHandler.eat(pos)) return true;
+        if (ghostHandler.eat(pos)) return true;
+        if (pillHandler.eat(pos)) return true;
+        return false;
     }
 
     /**
@@ -98,6 +102,9 @@ public class Level {
         Messages.displayScore(score);
     }
 
+    /**
+     * Sets 2 predefined walls
+     */
     private void setWalls () {
         // wall 1 : Y-Direction
         for (int y = 10; y <= 17; y++) {
