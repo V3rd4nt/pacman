@@ -179,4 +179,12 @@ public class Level {
     public ElementHandler getCornHandler() {
         return cornHandler;
     }
+
+    /**
+     * Returns the PillHandler
+     * @return ElementHandler
+     */
+    public ElementHandler getPillHandler() {
+        return pillHandler;
+    }
 }

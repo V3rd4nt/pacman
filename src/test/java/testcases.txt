@@ -21,7 +21,7 @@ Pacman soll keine Wände essen, und auch nicht durch sie hindurchfahren.
 
 [OK] Anlegen eines gültigen Elements
 
-Pacman soll bei einem Zusammenstoß mit einem Geist, der nicht verwundbar ist
+[OK] Pacman soll bei einem Zusammenstoß mit einem Geist, der nicht verwundbar ist
 ein Leben verlieren.
 
 [OK] Es dürfen keine Positionen außerhalb des Spielfeldes erzeugt werden:

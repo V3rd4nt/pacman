@@ -17,8 +17,9 @@ public class EventTimer extends Thread {
      * @param eh2
      * @param e
      */
-    public EventTimer(int time, ElementHandler eh, ElementHandler eh2, Element e) {
-        this.time = time*10;
+    public EventTimer(int time, ElementHandler eh, ElementHandler eh2, Element e, boolean testing) {
+        if (testing) this.time = time*100;
+        else this.time = time*10;
         this.eh = eh;
         this.eh2 = eh2;
         this.e = e;
@@ -44,9 +45,8 @@ public class EventTimer extends Thread {
                         if (eh2 instanceof GhostHandler) {
                             ((GhostHandler) eh2).setVulnerable(true);
 
-                            // TODO Increased for testing
                             // increased the time to give pacman a chance to actually eat a ghost
-                            Thread.sleep(time*100*5);
+                            Thread.sleep(time);
                             ((GhostHandler) eh2).setVulnerable(false);
                         }
                         break;

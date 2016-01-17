@@ -14,6 +14,7 @@ public class PillHandler implements ElementHandler {
     private Thread timer;
     private ElementHandler eh;
     private int[] maxOcurrences;
+    private boolean testing;
 
     /**
      * Creates a new PillHandler
@@ -22,6 +23,7 @@ public class PillHandler implements ElementHandler {
         pills = new ArrayList<>();
         this.eh = eh;
         setOcurrences();
+        testing = false;
     }
 
     /**
@@ -81,7 +83,7 @@ public class PillHandler implements ElementHandler {
         for (Pill pill : pills) {
             if (pill.getPosition().getX() == pos.getX() && pill.getPosition().getY() == pos.getY()) {
                 int effectTime = pill.getType().getEffectTime();
-                timer = new EventTimer(effectTime, this, eh, pill);
+                timer = new EventTimer(effectTime, this, eh, pill, testing);
                 timer.start();
                 pills.remove(pill);
                 return true;
@@ -110,5 +112,17 @@ public class PillHandler implements ElementHandler {
         for (Pill.Type t : Pill.Type.values()) {
             maxOcurrences[i] = t.getMaxOcurrence();
         }
+    }
+
+    // TODO new
+    /**
+     * Stops the EventTimer Thread
+     */
+    public void stopTimer () {
+        if (timer != null) timer.interrupt();
+    }
+
+    public void setTestingState (boolean state) {
+        testing = state;
     }
 }

@@ -38,7 +38,7 @@ public class FruitHandler implements ElementHandler {
             if (fruits.peek() != null) {
                 Fruit fruit = fruits.peek();
                 Messages.appear(fruit);
-                timer = new EventTimer(fruit.getType().getDisplayTime(), this, null, fruit);
+                timer = new EventTimer(fruit.getType().getDisplayTime(), this, null, fruit, false);
                 timer.start();
                 return true;
             } else return false;
@@ -70,7 +70,7 @@ public class FruitHandler implements ElementHandler {
     public boolean eat (Position pos) {
         if (!fruits.isEmpty()) {
             if (fruits.peek().getPosition().getX() == pos.getX() && fruits.peek().getPosition().getY() == pos.getY()) {
-                timer.interrupt();
+                if (timer != null) timer.interrupt();
                 getPoints(fruits.peek());
                 Messages.pacmanEat(fruits.peek());
                 fruits.pop();
@@ -81,11 +81,12 @@ public class FruitHandler implements ElementHandler {
         } else return false;
     }
 
+    // TODO Changed
     /**
      * Stops the EventTimer Thread
      */
     public void stopTimer () {
-        timer.interrupt();
+        if (timer != null) timer.interrupt();
     }
 
     /**
