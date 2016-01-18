@@ -32,6 +32,7 @@ public class JunitTests  {
         assertFalse(level.createElement("GHOST", Movement.createRandomPosition()));
         ((GhostHandler)level.getGhostHandler()).getElements().clear();
     }
+
     @Test
     public void test2_createAnElement () {
         assertTrue(level.createElement("CORN", Movement.createRandomPosition()));
@@ -75,34 +76,34 @@ public class JunitTests  {
         level.createElement("GHOST", pos(18, 15));
 
         pacman.setPosition(pos(1, 2));
-        level.eat(pos(1, 2));
+        level.getPillHandler().eat(pos(1, 2));
 
         for(int x = 42; x > 1; x--) {
             pacman.setPosition(pos(x, 2));
         }
         ((Element)((GhostHandler)level.getGhostHandler()).getElements().get(0)).setPosition(pos(2,2));
-        level.eat(pos(2, 2));
+        level.getGhostHandler().eat(pos(2, 2));
 
         for(int y = 43; y > 2; y--) {
             pacman.setPosition(pos(2, y));
         }
         ((Element)((GhostHandler)level.getGhostHandler()).getElements().get(0)).setPosition(pos(2,3));
-        level.eat(pos(2, 3));
+        level.getGhostHandler().eat(pos(2, 3));
 
         pacman.setPosition(pos(3, 3));
-        level.eat(pos(3, 3));
+        level.getPillHandler().eat(pos(3, 3));
 
         for(int y = 44; y > 3; y--) {
             pacman.setPosition(pos(3, y));
         }
         ((Element)((GhostHandler)level.getGhostHandler()).getElements().get(0)).setPosition(pos(3,4));
-        level.eat(pos(3, 4));
+        level.getGhostHandler().eat(pos(3, 4));
 
         for(int x = 44; x > 3; x--) {
             pacman.setPosition(pos(x, 4));
         }
         ((Element)((GhostHandler)level.getGhostHandler()).getElements().get(0)).setPosition(pos(4,4));
-        level.eat(pos(4, 4));
+        level.getGhostHandler().eat(pos(4, 4));
 
         ((GhostHandler)level.getGhostHandler()).getBonus();
         assertTrue(level.getScore() == 1600);
@@ -139,7 +140,7 @@ public class JunitTests  {
     @Test
     public void test9_PacmanEatsAllCorns(){
         level.setAllCorns();
-        int row = 0;
+        int row;
         int col = 0;
 
         while (col <= Position.getWIDTH())

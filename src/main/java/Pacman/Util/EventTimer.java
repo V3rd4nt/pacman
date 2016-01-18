@@ -18,8 +18,8 @@ public class EventTimer extends Thread {
      * @param e
      */
     public EventTimer(int time, ElementHandler eh, ElementHandler eh2, Element e, boolean testing) {
-        if (testing) this.time = time*1000;
-        else this.time = time*10;
+        if (testing) this.time = time*500;
+        else this.time = time*100;
         this.eh = eh;
         this.eh2 = eh2;
         this.e = e;

@@ -13,7 +13,7 @@ und die erwartete Punktezahl muss stimmen
 
 Spielende, wenn alle Leben verbraucht sind:
 
-Bonuspunkte Test bei gefressenen Geistern:
+[OK] Bonuspunkte Test bei allen gefressenen Geistern:
 
 Pacman soll keine Wände essen, und auch nicht durch sie hindurchfahren.
 
