@@ -9,7 +9,7 @@ und die erwartete Punktezahl muss stimmen
 
 [OK] Pacman frisst Geist:
 
-Spielende, wenn alle Körner gefressen wurden:
+[OK] Spielende, wenn alle Körner gefressen wurden:
 
 Spielende, wenn alle Leben verbraucht sind:
 

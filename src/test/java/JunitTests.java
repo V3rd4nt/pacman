@@ -1,9 +1,11 @@
 import Pacman.Elements.*;
+import Pacman.Util.Messages;
 import Pacman.Util.Movement;
 import org.junit.Before;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runners.MethodSorters;
+import sun.jvm.hotspot.debugger.posix.elf.ELFSectionHeader;
 
 import static org.junit.Assert.*;
 
@@ -111,5 +113,28 @@ public class JunitTests  {
 
         ((GhostHandler)level.getGhostHandler()).getBonus();
         assertTrue(level.getScore() == 1600);
+    }
+
+    @Test
+    public void test8_PacmanEatsAllCorns(){
+        level.setAllCorns();
+        int row = 0;
+        int col = 0;
+
+        while (col <= Position.getWIDTH())
+        {
+            row = 0;
+            while (row <= Position.getHEIGHT()){
+                if (! level.isWall(pos(col, row))){
+                    pacman.setPosition(pos(col, row));
+                    level.eat(pacman.getPosition());
+                }
+
+                row++;
+            }
+            col++;
+        }
+
+        assertTrue(level.getCornHandler().getElements().isEmpty());
     }
 }
