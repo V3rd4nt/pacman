@@ -15,7 +15,7 @@ public class JunitTests  {
     }
 
     private void delay (Pacman pacman) {
-        for(int i = 0; i < 60; i++) {
+        for(int i = 0; i < 50; i++) {
             pacman.setPosition(Movement.createRandomPosition());
         }
     }
@@ -30,17 +30,18 @@ public class JunitTests  {
     public void initTest () {
         pacman = new Pacman (pos (1,1));
         level = new Level (pacman, new Lifes(3));
+        level.resetScore();
     }
 
     @Test
-    public void test1_createMoreGhostsThanAllowed () {
+    public void Test_A_createMoreGhostsThanAllowed () {
         for (int i = 0; i < 4; i++) assertTrue(level.createElement("GHOST", Movement.createRandomPosition()));
         assertFalse(level.createElement("GHOST", Movement.createRandomPosition()));
         ((GhostHandler)level.getGhostHandler()).getElements().clear();
     }
 
     @Test
-    public void test2_createAnElement () {
+    public void Test_B_createAnElement () {
         assertTrue(level.createElement("CORN", Movement.createRandomPosition()));
         assertTrue(level.createElement("GHOST", Movement.createRandomPosition()));
         assertTrue(level.createElement("PILL", "POWER", Movement.createRandomPosition()));
@@ -48,12 +49,12 @@ public class JunitTests  {
     }
 
     @Test
-    public void test3_createAnUndefinedElement () {
+    public void Test_C_createAnUndefinedElement () {
         assertFalse(level.createElement("UNDEFINED", Movement.createRandomPosition()));
     }
 
     @Test
-    public void test4_createPositionOutsidePlayingField () {
+    public void Test_D_createPositionOutsidePlayingField () {
         int x = Position.getWIDTH()+10;
         int y = Position.getHEIGHT()+10;
         Position pos = pos (x, y);
@@ -68,13 +69,30 @@ public class JunitTests  {
     }
 
     @Test
-    public void test5_createMorePillsThanAllowed () {
+    public void Test_E_createMorePillsThanAllowed () {
         for (int i = 0; i < 2; i++) assertTrue(level.createElement("PILL" , "POWER", Movement.createRandomPosition()));
         assertFalse(level.createElement("PILL" , "POWER", Movement.createRandomPosition()));
     }
 
     @Test
-    public void test6_PacmanEatsAllGhostsAndGetsBonus () {
+    public void Test_F_CountPointsOfCorns(){
+        level.setAllCorns();
+        int cornEatCounter = 0, col = 0;
+        int pointsPerCoin = ((Corn) ((CornHandler)level.getCornHandler()).getElements().get(0)).getValue();
+        while (col <= Position.getWIDTH())
+        {
+            if (! level.isWall(pos(col, 2))){
+                pacman.setPosition(pos(col, 2));
+                level.eat(pacman.getPosition());
+                cornEatCounter++;
+            }
+            col++;
+        }
+        assertTrue(level.getScore() == cornEatCounter*pointsPerCoin);
+    }
+
+    @Test
+    public void Test_G_PacmanEatsAllGhostsAndGetsBonus () {
         level.createElement("PILL", "POWER", pos(1, 2));
         level.createElement("PILL", "POWER", pos(3, 3));
         level.createElement("GHOST", pos(15, 15));
@@ -116,7 +134,7 @@ public class JunitTests  {
     }
 
     @Test
-    public void test7_PacmanEatsGhost () {
+    public void Test_H_PacmanEatsGhost () {
         level.createElement("PILL", "POWER", pos (1,2));
         level.createElement("GHOST", pos (2,3));
         pacman.setPosition(pos (1,2));
@@ -128,7 +146,7 @@ public class JunitTests  {
     }
 
     @Test
-    public void test8_PacmanGetsEatenByGhost () {
+    public void Test_I_PacmanGetsEatenByGhost () {
         level.createElement("GHOST", pos (2,2));
         pacman.setPosition(pos (2,2));
         level.eat(pos (2,2));
@@ -136,7 +154,7 @@ public class JunitTests  {
     }
 
     @Test
-    public void test9_PacmanEatsAllCorns() {
+    public void Test_J_PacmanEatsAllCorns() {
         level.setAllCorns();
         int row, col = 0;
 
@@ -155,23 +173,31 @@ public class JunitTests  {
         assertTrue(level.getCornHandler().getElements().isEmpty());
     }
 
+    // TODO Das funktioniert nicht -> Ausführungszeit 0-1ms, im Thread selber können ascheinend keine asserts verwendet werden.
     @Test
-    public void test10_CountPointsOfCorns(){
-        level.setAllCorns();
-        int cornEatCounter = 0, col = 0;
-        int pointsPerCoin = ((Corn)level.getCornHandler().getElements().get(0)).getValue();
+    public void Test_K_PacmanEatsAllFruits() {
+        Thread startGame = new Thread() {
 
-        while (col <= Position.getWIDTH())
-        {
-            if (! level.isWall(pos(col, 2))){
-                pacman.setPosition(pos(col, 2));
-                level.eat(pacman.getPosition());
-                cornEatCounter++;
+            @Override
+            public void run() {
+                level.createElement("FRUIT", null);
+                Position nextPos;
+                try {
+                    while (true) {
+                        Thread.sleep(100);
+                        do {
+                            nextPos = Movement.createNextPositionFrom(pacman.getPosition());
+                        } while (level.isWall(nextPos));
+                        pacman.setPosition(nextPos);
+                        level.eat(pacman.getPosition());
+                        if (level.getLifes() == 0 || level.getCornHandler().getElements().isEmpty()) break;
+                    }
+                    assertFalse(level.getFruitHandler().getElements().isEmpty());
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
             }
-            col++;
-        }
-
-
-        assertTrue(level.getScore() == cornEatCounter*pointsPerCoin);
+        };
+        startGame.start();
     }
 }

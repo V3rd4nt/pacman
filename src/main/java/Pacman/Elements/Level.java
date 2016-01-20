@@ -187,4 +187,11 @@ public class Level {
     public ElementHandler getPillHandler() {
         return pillHandler;
     }
+
+    /**
+     * Resets the Score
+     */
+    public void resetScore () {
+        score = 0;
+    }
 }
