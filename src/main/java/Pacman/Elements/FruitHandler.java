@@ -38,7 +38,7 @@ public class FruitHandler implements ElementHandler {
             if (fruits.peek() != null) {
                 Fruit fruit = fruits.peek();
                 Messages.appear(fruit);
-                timer = new EventTimer(fruit.getType().getDisplayTime(), this, null, fruit, false);
+                timer = new EventTimer(fruit.getType().getDisplayTime(), this, null, fruit);
                 timer.start();
                 return true;
             } else return false;

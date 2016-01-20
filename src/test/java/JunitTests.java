@@ -14,6 +14,12 @@ public class JunitTests  {
         return new Position (x, y);
     }
 
+    private void delay (Pacman pacman) {
+        for(int i = 0; i < 60; i++) {
+            pacman.setPosition(Movement.createRandomPosition());
+        }
+    }
+
     private Level level;
     private Pacman pacman;
 
@@ -66,8 +72,6 @@ public class JunitTests  {
 
     @Test
     public void test6_PacmanEatsAllGhostsAndGetsBonus () {
-        ((PillHandler)level.getPillHandler()).setTestingState(true);
-
         level.createElement("PILL", "POWER", pos(1, 2));
         level.createElement("PILL", "POWER", pos(3, 3));
         level.createElement("GHOST", pos(15, 15));
@@ -75,52 +79,46 @@ public class JunitTests  {
         level.createElement("GHOST", pos(17, 15));
         level.createElement("GHOST", pos(18, 15));
 
+        // eat 1st power pill
         pacman.setPosition(pos(1, 2));
         level.getPillHandler().eat(pos(1, 2));
 
-        for(int x = 42; x > 1; x--) {
-            pacman.setPosition(pos(x, 2));
-        }
+        // eat 2 ghosts during power pill effect
+        delay(pacman);
         ((Element)((GhostHandler)level.getGhostHandler()).getElements().get(0)).setPosition(pos(2,2));
         level.getGhostHandler().eat(pos(2, 2));
 
-        for(int y = 43; y > 2; y--) {
-            pacman.setPosition(pos(2, y));
-        }
+        delay(pacman);
         ((Element)((GhostHandler)level.getGhostHandler()).getElements().get(0)).setPosition(pos(2,3));
         level.getGhostHandler().eat(pos(2, 3));
 
+        // eat 2nd power pill
         pacman.setPosition(pos(3, 3));
         level.getPillHandler().eat(pos(3, 3));
 
-        for(int y = 44; y > 3; y--) {
-            pacman.setPosition(pos(3, y));
-        }
+        // eat 2 additional ghosts during power pill effect
+        delay(pacman);
         ((Element)((GhostHandler)level.getGhostHandler()).getElements().get(0)).setPosition(pos(3,4));
         level.getGhostHandler().eat(pos(3, 4));
 
-        for(int x = 44; x > 3; x--) {
-            pacman.setPosition(pos(x, 4));
-        }
+        delay(pacman);
         ((Element)((GhostHandler)level.getGhostHandler()).getElements().get(0)).setPosition(pos(4,4));
         level.getGhostHandler().eat(pos(4, 4));
 
+        // calculates bonus
         ((GhostHandler)level.getGhostHandler()).getBonus();
+
+        // score has to be 1600 if all ghosts were eaten
         assertTrue(level.getScore() == 1600);
     }
 
     @Test
     public void test7_PacmanEatsGhost () {
-        ((PillHandler)level.getPillHandler()).setTestingState(true);
         level.createElement("PILL", "POWER", pos (1,2));
         level.createElement("GHOST", pos (2,3));
-
         pacman.setPosition(pos (1,2));
         level.eat(pos (1,2));
-
-        for(int x = 42; x > 1; x--) {
-            pacman.setPosition(pos(x, 2));
-        }
+        delay(pacman);
         ((Element)((GhostHandler)level.getGhostHandler()).getElements().get(0)).setPosition(pos(2,2));
         level.eat(pos(2, 2));
         assertTrue(level.getLifes() == 3);
@@ -128,12 +126,9 @@ public class JunitTests  {
 
     @Test
     public void test8_PacmanGetsEatenByGhost () {
-        ((PillHandler)level.getPillHandler()).setTestingState(true);
         level.createElement("GHOST", pos (2,2));
-
         pacman.setPosition(pos (2,2));
         level.eat(pos (2,2));
-
         assertTrue(level.getLifes() == 2);
     }
 
