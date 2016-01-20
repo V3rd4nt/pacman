@@ -1,0 +1,31 @@
+Junit Tests:
+------------
+
+Fruchttest:
+Alle Früchte nacheinander in der richtigen Reihenfolge gefressen werden
+und die erwartete Punktezahl muss stimmen
+
+[OK] Pacman wird von gefressen:
+
+[OK] Pacman frisst Geist:
+
+[OK] Spielende, wenn alle Körner gefressen wurden:
+
+Spielende, wenn alle Leben verbraucht sind:
+
+[OK] Bonuspunkte Test bei allen gefressenen Geistern:
+
+Pacman soll keine Wände essen, und auch nicht durch sie hindurchfahren.
+
+[OK] Anlegen ungültiger Elemente dürfen keine Exceptions werfen
+
+[OK] Anlegen eines gültigen Elements
+
+[OK] Pacman soll bei einem Zusammenstoß mit einem Geist, der nicht verwundbar ist
+ein Leben verlieren.
+
+[OK] Es dürfen keine Positionen außerhalb des Spielfeldes erzeugt werden:
+
+[OK] Es dürfen nicht mehr Pillen als erlaubt angelegt werden:
+
+
