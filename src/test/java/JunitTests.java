@@ -4,6 +4,7 @@ import org.junit.Before;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runners.MethodSorters;
+import java.util.Stack;
 
 import static org.junit.Assert.*;
 
@@ -176,28 +177,18 @@ public class JunitTests  {
     // TODO Das funktioniert nicht -> Ausführungszeit 0-1ms, im Thread selber können ascheinend keine asserts verwendet werden.
     @Test
     public void Test_K_PacmanEatsAllFruits() {
-        Thread startGame = new Thread() {
 
-            @Override
-            public void run() {
-                level.createElement("FRUIT", null);
-                Position nextPos;
-                try {
-                    while (true) {
-                        Thread.sleep(100);
-                        do {
-                            nextPos = Movement.createNextPositionFrom(pacman.getPosition());
-                        } while (level.isWall(nextPos));
-                        pacman.setPosition(nextPos);
-                        level.eat(pacman.getPosition());
-                        if (level.getLifes() == 0 || level.getCornHandler().getElements().isEmpty()) break;
-                    }
-                    assertFalse(level.getFruitHandler().getElements().isEmpty());
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-            }
-        };
-        startGame.start();
+        ElementHandler fh = level.getFruitHandler();
+        level.createElement("FRUIT", null);
+
+        while (!fh.getElements().isEmpty()){
+            Fruit fruit = ((Stack<Fruit>) fh.getElements()).peek() ;
+            pacman.setPosition(fruit.getPosition());
+            //pacman.setPosition(fruit.getPosition());
+            //pacman.setPosition(fruit.getPosition());
+            //pacman.setPosition(fruit.getPosition());
+            level.eat(pacman.getPosition());
+        }
+        assertTrue(level.getScore() == 6200);
     }
 }
