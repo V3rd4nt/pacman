@@ -15,7 +15,7 @@ Spielende, wenn alle Leben verbraucht sind:
 
 [OK] Bonuspunkte Test bei allen gefressenen Geistern:
 
-Pacman soll keine Wände essen, und auch nicht durch sie hindurchfahren.
+Pacman soll keine Wände essen, und auch nicht durch sie hindurchfahren. //nicht vernünftig implementierbar
 
 [OK] Anlegen ungültiger Elemente dürfen keine Exceptions werfen
 

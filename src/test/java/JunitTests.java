@@ -154,4 +154,24 @@ public class JunitTests  {
         }
         assertTrue(level.getCornHandler().getElements().isEmpty());
     }
+
+    @Test
+    public void test10_CountPointsOfCorns(){
+        level.setAllCorns();
+        int cornEatCounter = 0, col = 0;
+        int pointsPerCoin = ((Corn)level.getCornHandler().getElements().get(0)).getValue();
+
+        while (col <= Position.getWIDTH())
+        {
+            if (! level.isWall(pos(col, 2))){
+                pacman.setPosition(pos(col, 2));
+                level.eat(pacman.getPosition());
+                cornEatCounter++;
+            }
+            col++;
+        }
+
+
+        assertTrue(level.getScore() == cornEatCounter*pointsPerCoin);
+    }
 }
