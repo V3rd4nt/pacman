@@ -42,6 +42,9 @@ public class JunitTests  {
     @Test
     public void test2_createAnElement () {
         assertTrue(level.createElement("CORN", Movement.createRandomPosition()));
+        assertTrue(level.createElement("GHOST", Movement.createRandomPosition()));
+        assertTrue(level.createElement("PILL", "POWER", Movement.createRandomPosition()));
+        assertTrue(level.createElement("WALL", Movement.createRandomPosition()));
     }
 
     @Test
@@ -133,10 +136,9 @@ public class JunitTests  {
     }
 
     @Test
-    public void test9_PacmanEatsAllCorns(){
+    public void test9_PacmanEatsAllCorns() {
         level.setAllCorns();
-        int row;
-        int col = 0;
+        int row, col = 0;
 
         while (col <= Position.getWIDTH())
         {
@@ -146,7 +148,6 @@ public class JunitTests  {
                     pacman.setPosition(pos(col, row));
                     level.eat(pacman.getPosition());
                 }
-
                 row++;
             }
             col++;

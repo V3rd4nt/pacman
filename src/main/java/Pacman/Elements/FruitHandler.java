@@ -35,15 +35,11 @@ public class FruitHandler implements ElementHandler {
     @Override
     public boolean create () {
         if (!fruits.isEmpty()) {
-            if (fruits.peek() != null) {
-                if(!timer.isInterrupted()) {
-                    Fruit fruit = fruits.peek();
-                    Messages.appear(fruit);
-                    timer = new EventTimer(fruit.getType().getDisplayTime(), this, null, fruit);
-                    timer.start();
-                    return true;
-                }
-            } else return false;
+            Fruit fruit = fruits.peek();
+            Messages.appear(fruit);
+            timer = new EventTimer(fruit.getType().getDisplayTime(), this, null, fruit);
+            timer.start();
+            return true;
         } else return false;
     }
 

@@ -32,8 +32,6 @@ public class Game extends Thread {
     public void run() {
         setup();
 
-        // creates first fruit
-        level.createElement("FRUIT", null);
         Position nextPos;
         ghosts = (List<Ghost>) level.getGhostHandler().getElements();
 
@@ -92,5 +90,8 @@ public class Game extends Thread {
         // creates 2 power pills
         level.createElement("PILL", "POWER", pos (5, 20));
         level.createElement("PILL", "POWER", pos (15, 20));
+
+        // creates first fruit
+        level.createElement("FRUIT", null);
     }
 }
