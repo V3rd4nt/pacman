@@ -174,7 +174,6 @@ public class JunitTests  {
         assertTrue(level.getCornHandler().getElements().isEmpty());
     }
 
-    // TODO Das funktioniert nicht -> Ausführungszeit 0-1ms, im Thread selber können ascheinend keine asserts verwendet werden.
     @Test
     public void Test_K_PacmanEatsAllFruits() {
 
@@ -184,9 +183,6 @@ public class JunitTests  {
         while (!fh.getElements().isEmpty()){
             Fruit fruit = ((Stack<Fruit>) fh.getElements()).peek() ;
             pacman.setPosition(fruit.getPosition());
-            //pacman.setPosition(fruit.getPosition());
-            //pacman.setPosition(fruit.getPosition());
-            //pacman.setPosition(fruit.getPosition());
             level.eat(pacman.getPosition());
         }
         assertTrue(level.getScore() == 6200);

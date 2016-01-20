@@ -2,7 +2,7 @@ Junit Tests:
 ------------
 
 Fruchttest:
-Alle Früchte nacheinander in der richtigen Reihenfolge gefressen werden
+[OK] Alle Früchte nacheinander in der richtigen Reihenfolge gefressen werden
 und die erwartete Punktezahl muss stimmen
 
 [OK] Pacman wird von gefressen:
@@ -11,7 +11,7 @@ und die erwartete Punktezahl muss stimmen
 
 [OK] Spielende, wenn alle Körner gefressen wurden:
 
-Spielende, wenn alle Leben verbraucht sind:
+Spielende, wenn alle Leben verbraucht sind: //Nicht erforderlich da getestet wird ob Leben generell abgezogen wird
 
 [OK] Bonuspunkte Test bei allen gefressenen Geistern:
 
